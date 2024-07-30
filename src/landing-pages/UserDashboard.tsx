@@ -288,7 +288,7 @@ const UserDashboard = () => {
   //back to top // scrolling
 
   const handleBottomClick = (clicked: boolean) => {
-    if ((clicked = true)) {
+    if (clicked == true) {
       scroll();
     }
   };

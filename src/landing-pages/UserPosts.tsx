@@ -27,7 +27,7 @@ type PostData = {
 };
 
 const UserPosts = () => {
-  const { userId, username, profilePicCheck } = useParams();
+  const { userId, username } = useParams();
   const [postData, setPostData] = useState<PostData[]>();
   const [inView, setInView] = useState<boolean>(false);
   const [maxPosts, setMaxPost] = useState<boolean>(false);
@@ -112,7 +112,7 @@ const UserPosts = () => {
   //back to top // scrolling
 
   const handleBottomClick = (clicked: boolean) => {
-    if ((clicked = true)) {
+    if (clicked == true) {
       scroll();
     }
   };

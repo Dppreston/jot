@@ -2,10 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import Navbar from "../main-components/Navbar";
 import MessageEnvironmentMain from "../message-components/MessageEnvironmentMain";
 import MessageListMain from "../message-components/MessageListMain";
-import { GlobalContext, MessageData, UserContext } from "../App";
+import { GlobalContext, UserContext } from "../App";
 import axios from "axios";
 import { useParams } from "react-router";
-import Button from "../buttons/ButtonMain";
 
 const token: string | null = localStorage.getItem(`token`);
 

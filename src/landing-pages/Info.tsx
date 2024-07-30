@@ -4,7 +4,7 @@ import Button from "../buttons/ButtonMain";
 import Input from "../buttons/Input";
 import logo from "../assets/jot-logo.png";
 import darkLogo from "../assets/jot-logo-DM.png";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import InformationPopup from "../popup-components/InformationPopup";
 import InfoData from "../staticdata/InfoData";
 import { GlobalContext, UserContext } from "../App";
@@ -241,7 +241,7 @@ export const ContactUs = () => {
 //faq
 
 export const Faq = () => {
-  const [selected, setSelected] = useState<boolean>(false);
+  const [, setSelected] = useState<boolean>(false);
   const { darkActive } = useContext<GlobalContext>(UserContext);
 
   //handle selected

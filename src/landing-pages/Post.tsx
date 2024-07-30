@@ -78,8 +78,7 @@ export const OtherPostsByUser = ({
   otherPostData,
   existingPostId,
 }: OtherPostsProps) => {
-  const { mobileMedia, mobileTextLimit } =
-    useContext<GlobalContext>(UserContext);
+  const { mobileMedia } = useContext<GlobalContext>(UserContext);
   const [scrollBack, setScrollBack] = useState<boolean>(false);
   const [scrollForward, setScrollForward] = useState<boolean>(!false);
   const [mouseOver, setMouseOver] = useState<boolean>(false);

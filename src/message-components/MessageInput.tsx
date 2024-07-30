@@ -47,7 +47,7 @@ const MessageInput = ({
             <i className="fa-solid fa-plus"></i>
           </button>
           <button
-            onClick={(e) => {
+            onClick={() => {
               if (messageData != undefined) {
                 action!();
                 setMessageValueToClear("");

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext, NotificationData, UserContext } from "../App";
 import { useParams } from "react-router";
 

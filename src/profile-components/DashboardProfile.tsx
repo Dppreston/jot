@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import logo from "../assets/profile__pic--filler.png";
+
 import ProfileSideTile from "../side-components/ProfileSideTile";
 type ProfileProps = {
   profileOptions: {

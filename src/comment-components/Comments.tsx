@@ -4,7 +4,6 @@ import logo from "../assets/jot-logo.png";
 import Button from "../buttons/ButtonMain";
 import { GlobalContext, NotificationData, UserContext } from "../App";
 import smallLoader from "../assets/small--loader.gif";
-import darkSmallLoader from "../assets/small--loader--dark.gif";
 
 const token: string | null = localStorage.getItem("token");
 
@@ -174,7 +173,7 @@ export const CommentDropdown = ({
       <div className="comment__dropdown">
         <button
           className="comment__dropdown--selection"
-          onClick={(e) => {
+          onClick={() => {
             dropdownSelection(!false);
             setReportActive(!false);
             setReportConditions({
@@ -312,10 +311,9 @@ export const CommentTile = ({
   const [userData, setUserData] = useState<UserData[]>();
   const [likedRes, setLikeRes] = useState<boolean>(false);
   const [dislikedRes, setDislikedRes] = useState<boolean>(false);
-  const [userId, setUserId] = useState<string>(commentData.userId);
+  const [userId] = useState<string>(commentData.userId);
   const [dropdown, setDropdown] = useState<boolean>(false);
-  const [dropdownSelectionProps, setDropdownSelectionProps] =
-    useState<boolean>(false);
+  const [, setDropdownSelectionProps] = useState<boolean>(false);
 
   const [replyActive, setReplyActive] = useState<boolean>(false);
   const [replyData, setReplyData] = useState<any>();
@@ -516,7 +514,7 @@ export const CommentTile = ({
       const filteredIds = test.data.map((el: { _id: string }) => el._id);
 
       if (test.data) {
-        const res = await axios.put(
+        await axios.put(
           `/jot-users?deletedComment=true&userId=${token}&idsToDelete=${filteredIds}`
         );
       }
@@ -770,8 +768,7 @@ const Comments = ({ postData }: PostData) => {
   const [dynamicLength, setDynamicLength] = useState<number>();
   const [loadMore, setLoadMore] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const { loggedin, setLoginActive, darkActive } =
-    useContext<GlobalContext>(UserContext);
+  const { loggedin, setLoginActive } = useContext<GlobalContext>(UserContext);
   const [inactive, setInactive] = useState<boolean>(false);
 
   //global fetch comments

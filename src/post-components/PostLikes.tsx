@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useRef, useEffect, useContext } from "react";
 import { GlobalContext, NotificationData, UserContext } from "../App";
-import Login from "../main-components/Login";
 
 const token: string | null = localStorage.getItem("token");
 
@@ -39,11 +38,9 @@ const PostLike = ({ userPostData }: PostData) => {
   );
   const [likeCheck, setLikeCheck] = useState<boolean>(false);
   const [dislikeCheck, setDisLikeCheck] = useState<boolean>(false);
-  const [liked, setLiked] = useState<boolean>(false);
   const likeRef: any = useRef();
   const dislikeRef: any = useRef();
-  const { loggedin, setLoginActive, notificationResType } =
-    useContext<GlobalContext>(UserContext);
+  const { loggedin, setLoginActive } = useContext<GlobalContext>(UserContext);
 
   //like fetch and update
 

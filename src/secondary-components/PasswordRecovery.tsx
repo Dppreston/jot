@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import logo from "../assets/jot-logo.png";
 import Button from "../buttons/ButtonMain";
 import Input from "../buttons/Input";
 import axios from "axios";

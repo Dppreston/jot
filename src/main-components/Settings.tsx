@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import categories from "../staticdata/Categories";
-import icons from "../staticdata/icons";
+
 import Button from "../buttons/ButtonMain";
 import Toggle from "../buttons/Toggle";
-import Loader from "../loaders/Loader";
+
 import Input from "../buttons/Input";
 import PasswordCheck from "../secondary-components/PasswordCheck";
 // import { EditBio, EditFavorites } from "../profile-components/UserProfileCard";
@@ -78,7 +78,7 @@ export const ProfileSettings = ({
   //update private profile
 
   const updatePrivateProfile = async (active: boolean) => {
-    const res = await axios.put(
+    await axios.put(
       `/jot-user-preferences?privateProfile=true&userId=${token}&currentState=${active}`
     );
   };
@@ -105,7 +105,7 @@ export const ProfileSettings = ({
     console.log(res.data);
 
     if (res.data[0] == true) {
-      const versionUpdate = await axios.put(
+      await axios.put(
         `/jot-users?versionUpdate=true&userId=${token}&version=${res.data[1]}`
       );
       setLoading(false);
@@ -342,7 +342,7 @@ export const AccountSettings = ({
   const [specialCharCheck, setSpecialCharCheck] = useState<boolean>(false);
   const [numberCheck, setNumberCheck] = useState<boolean>(false);
   const [finalPassword, setFinalPassword] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [, setLoading] = useState<boolean>(false);
   const [saveActive, setSaveActive] = useState<boolean>(false);
   const [passwordSatisfied, setPasswordSatisfied] = useState<boolean>(false);
   const [infoPopup, setInfoPopup] = useState<boolean>(false);
@@ -801,7 +801,7 @@ export const Preferences = ({ selection, preferenceData }: PreferenceProps) => {
   //recieve toggle string data
 
   const updateDarkmodeToggle = async (active: boolean) => {
-    const res = await axios.put(
+    await axios.put(
       `/jot-user-preferences?updateDarkmode=true&userId=${token}&currentState=${active}`
     );
     window.themeCheck(token);

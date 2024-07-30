@@ -229,7 +229,7 @@ export const NotificationTile = ({
   username,
 }: NotificationDataProps) => {
   const [deleteActive, setDeleteActive] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [, setLoading] = useState<boolean>(false);
   const deleteRef = useRef<any>();
   const { mobileMedia } = useContext<GlobalContext>(UserContext);
 
@@ -604,7 +604,7 @@ export const NavbarHomeNavDropdown = ({
               <section
                 className="nav__category--tile"
                 key={data.id}
-                onClick={(e) => {
+                onClick={() => {
                   window.location.href = `${window.location.origin}/info/${data.path}`;
                 }}
               >

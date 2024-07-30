@@ -1,7 +1,7 @@
 import logo from "../assets/jot-logo.png";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+
 import Loader from "../loaders/Loader";
 import categories from "../staticdata/Categories";
 import ProfilePictureUpload from "../profile-components/ProfilePictureUpload";
@@ -627,7 +627,7 @@ export const LoginForm = () => {
   const [userError, setUserError] = useState<string | JSX.Element>("");
   const [isloading, setIsLoading] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(false);
-  const [loadingRedirect, setLoadingRedirect] = useState<string>();
+  const [loadingRedirect] = useState<string>();
   const { setPasswordRecovery, mobileMedia } =
     useContext<GlobalContext>(UserContext);
 

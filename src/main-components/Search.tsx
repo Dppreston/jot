@@ -57,7 +57,7 @@ export const SearchProfileImg = ({ profilePic, imgVersion }: ImgProps) => {
 export const SearchDropdown = ({ searchContent }: SearchContentProps) => {
   const [postSearchRes, setPostSearchRes] = useState<SearchRes[]>();
   const [userSearchRes, setUserSearchRes] = useState<SearchRes[]>();
-  const { darkActive, mobileMedia } = useContext<GlobalContext>(UserContext);
+  const { darkActive } = useContext<GlobalContext>(UserContext);
   //post search
 
   const searchPosts = async () => {

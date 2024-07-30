@@ -1,13 +1,12 @@
 import { useParams } from "react-router";
 import Navbar from "../main-components/Navbar";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import logo from "../assets/jot-logo.png";
 import categories from "../staticdata/Categories";
 import { GlobalContext, UserContext } from "../App";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { log } from "console";
 
 const token: string | null = localStorage.getItem(`token`);
 

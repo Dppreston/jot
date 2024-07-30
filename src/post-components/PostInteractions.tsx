@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useEffect, useState, useRef, useContext } from "react";
-import ConfirmPopup from "../popup-components/ConfirmPopup";
+import { useEffect, useState, useContext } from "react";
+
 import { GlobalContext, UserContext } from "../App";
-import Login from "../main-components/Login";
 
 const interactionContent: {
   id: number;
@@ -199,7 +198,7 @@ const PostInteractions = ({ postId, feedTile, postImg }: InteractionProps) => {
   const [options, setOptions] = useState<boolean>(false);
   const [postIdConfirmation, setPostIdConfirmation] = useState<boolean>(false);
   const [commentCount, setCommentCount] = useState<number>(0);
-  const { darkActive, loggedin, setLoginActive, setConfirmActive } =
+  const { darkActive, loggedin, setLoginActive } =
     useContext<GlobalContext>(UserContext);
 
   //focus check
@@ -219,7 +218,7 @@ const PostInteractions = ({ postId, feedTile, postImg }: InteractionProps) => {
         `/jot-users?save=true&postId=${postId}&userId=${token}`
       );
 
-      const saveUserToPost = await axios.put(
+      await axios.put(
         `/jot-posts?saveUserToPost=true&postId=${postId}&userId=${token}`
       );
 

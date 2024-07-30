@@ -1,4 +1,3 @@
-import logo from "../assets/jot-logo.png";
 export const helpOptions: { id: number; option: string; path: string }[] = [
   {
     id: 1,

@@ -7,8 +7,6 @@ import RecUsers from "../side-components/RecUsers";
 import { GlobalContext, UserContext } from "../App";
 import FollowRequest from "../side-components/FollowRequest";
 import FollowerFollowing from "../popup-components/FollowerFollowing";
-import Error from "./Error";
-import errorData from "../staticdata/ErrData";
 
 const token: string | null = localStorage.getItem("token");
 

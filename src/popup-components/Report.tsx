@@ -201,7 +201,7 @@ const Report = ({ data }: ReportProps) => {
                           : undefined
                       }
                       type="checkbox"
-                      onClick={(e) => {
+                      onClick={() => {
                         handleReportReasons(data);
                       }}
                       id="report__selection"

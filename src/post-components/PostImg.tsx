@@ -19,7 +19,6 @@ const PostImg = ({
   setPostImg,
   post,
   create,
-  postFinal,
 }: PostImgProps) => {
   const { darkActive } = useContext<GlobalContext>(UserContext);
 

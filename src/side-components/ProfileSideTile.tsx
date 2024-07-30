@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import logo from "../assets/jot-logo.png";
 import { GlobalContext, UserContext } from "../App";
 

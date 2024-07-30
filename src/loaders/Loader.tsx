@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import loader from "../assets/jot-loader.mp4";
 import darkLoader from "../assets/jot-loader-DM.mp4";
 import loadingDone from "../assets/small-loader-done.mp4";

@@ -1,6 +1,6 @@
 import smallLoader from "../assets/small--loader.gif";
 import smallLoaderDark from "../assets/small--loader--dark.gif";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { GlobalContext, UserContext } from "../App";
 
 const ComponentLoader = () => {
