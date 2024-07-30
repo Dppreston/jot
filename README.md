@@ -1,4 +1,4 @@
-Jot | Short Informational Articles & Social Media
+<h2>Jot | Short Informational Articles & Social Media</h2>
 
 Jot is a blog and social media platform focused on delivering concise, informative content.
 Key Features
