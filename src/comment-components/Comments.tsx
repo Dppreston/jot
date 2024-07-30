@@ -694,9 +694,20 @@ export const CommentTile = ({
 };
 
 export const SortDopdown = ({ sortSelection }: any) => {
+  const { darkActive } = useContext<GlobalContext>(UserContext);
   return (
     <>
-      <div className="sort__dropdown--menu">
+      <div
+        className="sort__dropdown--menu"
+        style={
+          darkActive == !false
+            ? {
+                background: "var(--hover-on-black-DM",
+                color: "var(--hover-on-grey)",
+              }
+            : undefined
+        }
+      >
         {sortOptions?.map((options) => (
           <button
             className="comment__sort--selection"
@@ -704,6 +715,13 @@ export const SortDopdown = ({ sortSelection }: any) => {
             onClick={() => {
               sortSelection(options.selection);
             }}
+            style={
+              darkActive == !false
+                ? {
+                    color: "var(--hover-on-grey)",
+                  }
+                : undefined
+            }
           >
             {options.selection}
           </button>
@@ -718,6 +736,7 @@ export const CommentSort = ({ sortProp }: any) => {
     sortOptions[0].selection
   );
   const [dropdown, setDropdown] = useState<boolean>(false);
+  const { darkActive } = useContext<GlobalContext>(UserContext);
 
   //selection Check
 
@@ -745,9 +764,25 @@ export const CommentSort = ({ sortProp }: any) => {
               setDropdown(false);
             }
           }}
+          style={
+            darkActive == !false
+              ? {
+                  color: "var(--hover-on-grey)",
+                }
+              : undefined
+          }
         >
-          {" "}
-          {selection} <i className="fa-solid fa-chevron-down"></i>
+          <h4>{selection}</h4>
+          <i
+            className="fa-solid fa-chevron-down"
+            style={
+              darkActive == !false
+                ? {
+                    color: "var(--hover-on-grey)",
+                  }
+                : undefined
+            }
+          ></i>
           {dropdown == !false ? (
             <SortDopdown sortSelection={sortSelection} />
           ) : null}

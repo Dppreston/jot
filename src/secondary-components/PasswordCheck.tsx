@@ -31,6 +31,7 @@ const PasswordCheck = ({
                 id="signup__info--check"
                 autoPlay
                 muted
+                playsInline
               ></video>
             )}
           </h4>
@@ -47,6 +48,7 @@ const PasswordCheck = ({
                 id="signup__info--check"
                 autoPlay
                 muted
+                playsInline
               ></video>
             )}
           </h4>
@@ -62,6 +64,7 @@ const PasswordCheck = ({
                 id="signup__info--check"
                 autoPlay
                 muted
+                playsInline
               ></video>
             )}
           </h4>
@@ -77,6 +80,7 @@ const PasswordCheck = ({
                 id="signup__info--check"
                 autoPlay
                 muted
+                playsInline
               ></video>
             )}
           </h4>

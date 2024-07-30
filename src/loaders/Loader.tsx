@@ -52,6 +52,7 @@ const Loader = ({ loadingState, redirect }: LoadingProps) => {
               muted
               loop
               className="loader"
+              playsInline
             ></video>
           ) : (
             <div className="loading__done--container">
@@ -61,6 +62,7 @@ const Loader = ({ loadingState, redirect }: LoadingProps) => {
                 muted
                 className="loader__main--done loader"
                 onEnded={() => animationTrigger()}
+                playsInline
               ></video>
             </div>
           )}

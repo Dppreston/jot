@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import categories from "../staticdata/Categories";
 import { GlobalContext, UserContext } from "../App";
 
@@ -40,20 +40,18 @@ export const FeedSortDropdown = ({ dropdownSelection }: SelectionProps) => {
   }, []);
   return (
     <>
-      <div className="feed__sort--dropdown">
-        {feedSortOptions.map((option) => (
-          <section
-            id="feed__sort--option"
-            key={option.id}
-            onClick={(e) => {
-              dropdownSelection(option.option, option.id);
-              e.currentTarget.parentElement?.parentElement?.blur();
-            }}
-          >
-            <p>{option.option}</p>
-          </section>
-        ))}
-      </div>
+      {feedSortOptions.map((option) => (
+        <section
+          id="feed__sort--option"
+          key={option.id}
+          onClick={(e) => {
+            dropdownSelection(option.option, option.id);
+            e.currentTarget.parentElement?.parentElement?.blur();
+          }}
+        >
+          <p>{option.option}</p>
+        </section>
+      ))}
     </>
   );
 };
@@ -71,22 +69,20 @@ export const CategoryDropdown = ({
   }, []);
   return (
     <>
-      <div className="feed__category--sort--dropdown">
-        {categories.map((data) => (
-          <section
-            className="category__option"
-            key={data.id}
-            onClick={(e) => {
-              categoryTitleSelection!(data.title);
-              categorySortSelection ? categorySortSelection!(data.title) : null;
+      {categories.map((data) => (
+        <section
+          className="category__option"
+          key={data.id}
+          onClick={(e) => {
+            categoryTitleSelection!(data.title);
+            categorySortSelection ? categorySortSelection!(data.title) : null;
 
-              e.currentTarget.parentElement?.parentElement?.blur();
-            }}
-          >
-            <i className={data.icon}></i> <h5>{data.title}</h5>
-          </section>
-        ))}
-      </div>
+            e.currentTarget.parentElement?.parentElement?.blur();
+          }}
+        >
+          <i className={data.icon}></i> <h5>{data.title}</h5>
+        </section>
+      ))}
     </>
   );
 };
@@ -109,19 +105,32 @@ const FeedSort = ({
   const [selectionTitle, setSelectionTitle] = useState<string>("top");
   const [categoryTitle, setCategoryTitle] = useState<string>("");
   const { darkActive } = useContext<GlobalContext>(UserContext);
-
   const onFocus = () => setActive(!false);
   const onBlur = () => setActive(false);
   const onCategoryFocus = () => setCategoryActive(!false);
   const onCategoryBlur = () => setCategoryActive(false);
+  const sortRef = useRef<any>();
+  const categoryRef = useRef<any>();
+
+  window.addEventListener("mousedown", (e) => {
+    if (active && !sortRef.current?.includes(e.target)) {
+      setActive(false);
+    }
+
+    if (categoryActive && !categoryRef.current?.includes(e.target)) {
+      setCategoryActive(false);
+    }
+  });
 
   const dropdownSelection = (selectionTitle: string, selectionId: number) => {
     setSelectionTitle(selectionTitle);
     sortOption(selectionId);
+    setActive(false);
   };
 
   const categorySelection = (selectionTitle: string) => {
     setCategoryTitle(selectionTitle);
+    setCategoryActive(false);
   };
 
   useEffect(() => {
@@ -136,10 +145,13 @@ const FeedSort = ({
             onFocus={onFocus}
             onBlur={onBlur}
             className="feed__dropdown--button"
+            onClick={() => setActive(!false)}
           >
             <p>{selectionTitle}</p> <i className="fa-solid fa-chevron-down"></i>
             {active == !false ? (
-              <FeedSortDropdown dropdownSelection={dropdownSelection} />
+              <div className="feed__sort--dropdown" ref={sortRef}>
+                <FeedSortDropdown dropdownSelection={dropdownSelection} />
+              </div>
             ) : null}
           </button>
         </div>
@@ -149,6 +161,7 @@ const FeedSort = ({
               className="feed__dropdown--button category__sort--button"
               onFocus={onCategoryFocus}
               onBlur={onCategoryBlur}
+              onClick={() => setCategoryActive(!false)}
             >
               {categoryTitle == "" ? (
                 <p>Category</p>
@@ -158,10 +171,15 @@ const FeedSort = ({
 
               <i className="fa-solid fa-chevron-down"></i>
               {categoryActive == !false ? (
-                <CategoryDropdown
-                  categorySortSelection={categorySortSelection}
-                  categoryTitleSelection={categorySelection}
-                />
+                <div
+                  className="feed__category--sort--dropdown"
+                  ref={categoryRef}
+                >
+                  <CategoryDropdown
+                    categorySortSelection={categorySortSelection}
+                    categoryTitleSelection={categorySelection}
+                  />
+                </div>
               ) : null}
             </button>
           </div>

@@ -39,14 +39,6 @@ const MessageInput = ({
         />
         <div className="message__input--button--container">
           <button
-            style={
-              darkActive == !false ? { color: "var(--white-DM)" } : undefined
-            }
-          >
-            {" "}
-            <i className="fa-solid fa-plus"></i>
-          </button>
-          <button
             onClick={() => {
               if (messageData != undefined) {
                 action!();

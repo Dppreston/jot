@@ -291,7 +291,10 @@
     margin-bottom: 0;
   }
   #other__posts--tile {
-    gap: 3px;
+    gap: 10px;
+  }
+  #other__posts--tile h4 {
+    flex: 1;
   }
 
   .first__comment--alert {

@@ -82,7 +82,13 @@ const Input = ({
           }}
         />
         {inputSatisfied == !false ? (
-          <video src={check} autoPlay muted className="input__satisfied" />
+          <video
+            src={check}
+            autoPlay
+            muted
+            playsInline
+            className="input__satisfied"
+          />
         ) : null}
       </div>
     </>

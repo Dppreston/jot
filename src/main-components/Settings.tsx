@@ -1,13 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import categories from "../staticdata/Categories";
-
 import Button from "../buttons/ButtonMain";
 import Toggle from "../buttons/Toggle";
-
 import Input from "../buttons/Input";
 import PasswordCheck from "../secondary-components/PasswordCheck";
-// import { EditBio, EditFavorites } from "../profile-components/UserProfileCard";
 import ProfilePictureUpload from "../profile-components/ProfilePictureUpload";
 import smallLoader from "../assets/small--loader.gif";
 import loaderDone from "../assets/small-loader-done.mp4";

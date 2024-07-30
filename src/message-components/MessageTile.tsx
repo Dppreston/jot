@@ -92,7 +92,7 @@ const MessageTile = ({ messages, convoId, convoUsers }: MessageTileProps) => {
                 ? {
                     marginLeft: "auto",
                     background: "var(--accent)",
-                    color: "var(--white-DM)",
+
                     border: "var(--border)",
                   }
                 : {

@@ -120,7 +120,14 @@ export const MessageNavTile = ({
               setMessageInteractionDropdownActive(!false);
             }}
           >
-            <i className="fa-solid fa-ellipsis"></i>
+            <i
+              className="fa-solid fa-ellipsis"
+              style={
+                darkActive == !false
+                  ? { color: "var(--hover-on-grey)" }
+                  : undefined
+              }
+            ></i>
           </div>
         ) : null}
         {messageInteractionDropdownActive == !false ? (
@@ -138,9 +145,6 @@ export const MessageNavTile = ({
           >
             <button
               className="message__nav--interaction--tile "
-              style={
-                darkActive == !false ? { color: "var(--white-DM)" } : undefined
-              }
               onClick={() => {
                 setMessageInteractionDropdownActive(false),
                   setMessageInteractionActive(false);
@@ -150,11 +154,34 @@ export const MessageNavTile = ({
                 }, 300);
               }}
             >
-              <i className="fa-solid fa-check"></i>
+              <i
+                className="fa-solid fa-check"
+                style={
+                  darkActive == !false
+                    ? { color: "var(--hover--on--grey)" }
+                    : undefined
+                }
+              ></i>
               {specificRead == undefined ? (
-                <h4>Mark as unread</h4>
+                <h4
+                  style={
+                    darkActive == !false
+                      ? { color: "var(--hover--on--grey)" }
+                      : undefined
+                  }
+                >
+                  Mark as unread
+                </h4>
               ) : (
-                <h4>Mark as Read</h4>
+                <h4
+                  style={
+                    darkActive == !false
+                      ? { color: "var(--white-DM)" }
+                      : undefined
+                  }
+                >
+                  Mark as Read
+                </h4>
               )}
             </button>
             <button

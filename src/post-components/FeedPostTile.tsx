@@ -43,7 +43,7 @@ const FeedPostTile = ({ userPostData }: PostData) => {
   const [creationDate, setCreationDate] = useState<string>("");
   const [postImg, setPostImg] = useState<string>();
   const [previewFull, setPreviewFull] = useState<boolean>(false);
-  const { mobileMedia } = useContext<GlobalContext>(UserContext);
+  const { mobileMedia, darkActive } = useContext<GlobalContext>(UserContext);
 
   //date format
 
@@ -127,7 +127,13 @@ const FeedPostTile = ({ userPostData }: PostData) => {
               >
                 <h4>
                   By:{" "}
-                  <span>
+                  <span
+                    style={
+                      darkActive == !false
+                        ? { color: "var(--hover-on-grey)" }
+                        : undefined
+                    }
+                  >
                     {postUserData != undefined
                       ? postUserData[0].username
                       : null}

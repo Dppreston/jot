@@ -380,6 +380,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
                       id="signup__info--check--alt"
                       autoPlay
                       muted
+                      playsInline
                     ></video>
                   ) : null}
                 </span>
@@ -404,6 +405,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
                       id="signup__info--check--alt"
                       autoPlay
                       muted
+                      playsInline
                     ></video>
                   ) : null}
                 </span>
@@ -445,6 +447,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
                     id="signup__info--check--alt"
                     autoPlay
                     muted
+                    playsInline
                   ></video>
                 ) : null}
                 {conditionActive == !false ? (
@@ -489,6 +492,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
                     id="signup__info--check--alt"
                     autoPlay
                     muted
+                    playsInline
                   ></video>
                 ) : !email.includes("@") && email != "" ? (
                   <p
@@ -545,6 +549,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
                   id="signup__info--check--alt"
                   autoPlay
                   muted
+                  playsInline
                 ></video>
               ) : null}
             </label>
@@ -561,6 +566,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
                     id="signup__info--check--alt"
                     autoPlay
                     muted
+                    playsInline
                   ></video>
                 ) : null}
               </span>
@@ -745,6 +751,7 @@ export const LoginForm = () => {
                 className="login__info--check--alt"
                 autoPlay
                 muted
+                playsInline
               ></video>
             ) : null}
           </label>
@@ -784,6 +791,7 @@ export const LoginForm = () => {
                 className="login__info--check--alt"
                 autoPlay
                 muted
+                playsInline
               ></video>
             ) : null}
           </label>

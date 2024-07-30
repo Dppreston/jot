@@ -182,10 +182,6 @@ const Search = () => {
 
   const hanldeSearchSubmit = () => {
     console.log(searchContent);
-
-    // if (searchContent != "") {
-    //   window.location.href = `${window.location.origin}/search/${searchContent}/${token}`;
-    // }
   };
 
   useEffect(() => {

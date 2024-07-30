@@ -155,38 +155,36 @@ export const NavbarUserDrop = ({
 
   return (
     <>
-      <div className="navbar__dropdown--wrapper">
-        <div className="navbar__user--dropdown--upper">
-          <div className="user__dropdown--profile--card">
-            <img
-              src={`${profilePic}.js?version=${imgVersion}`}
-              id="user__drop--img"
-            />{" "}
-            <h3>{username}</h3>
-          </div>
+      <div className="navbar__user--dropdown--upper">
+        <div className="user__dropdown--profile--card">
+          <img
+            src={`${profilePic}.js?version=${imgVersion}`}
+            id="user__drop--img"
+          />{" "}
+          <h3>{username}</h3>
         </div>
-        <div className="navbar__user--dropdown--middle">
-          {userDropDownOptions
-            ?.filter((el) => el.id == 1 || el.id == 2)
-            .map((data) => (
-              <section
-                className="user__option--middle"
-                key={data.id}
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = `${window.location.origin}/${data.path}/`;
-                }}
-              >
-                <Icon
-                  icon={data.icon!}
-                  shape={true}
-                  width={"13px"}
-                  height={"13px"}
-                />
-                <h4>{data.title}</h4>
-              </section>
-            ))}
-        </div>
+      </div>
+      <div className="navbar__user--dropdown--middle">
+        {userDropDownOptions
+          ?.filter((el) => el.id == 1 || el.id == 2)
+          .map((data) => (
+            <section
+              className="user__option--middle"
+              key={data.id}
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = `${window.location.origin}/${data.path}/`;
+              }}
+            >
+              <Icon
+                icon={data.icon!}
+                shape={true}
+                width={"13px"}
+                height={"13px"}
+              />
+              <h4>{data.title}</h4>
+            </section>
+          ))}
 
         <div className="navbar__user--dropdown--bottom">
           {userDropDownOptions
@@ -370,25 +368,23 @@ export const NavbarNotificationDrop = ({ userData }: UserDataProps) => {
 
   return (
     <>
-      <div className="notification__dropdown--wrapper">
-        <div className="notification__dropdown--upper">
-          <h4>Notifications</h4>
-        </div>
+      <div className="notification__dropdown--upper">
+        <h4>Notifications</h4>
+      </div>
 
-        <div className="notification__dropdown--tile--container">
-          {notificationData.length > 0
-            ? notificationData.map((data: any) => (
-                <NotificationTile
-                  notificationData={data}
-                  fetchNotifications={fetchNotifications}
-                  key={data._id}
-                  username={userData![0].username}
-                />
-              ))
-            : emptyData
-                .filter((el) => el.id == 9)
-                .map((data, key) => <EmptyContent data={data} key={key} />)}
-        </div>
+      <div className="notification__dropdown--tile--container">
+        {notificationData.length > 0
+          ? notificationData.map((data: any) => (
+              <NotificationTile
+                notificationData={data}
+                fetchNotifications={fetchNotifications}
+                key={data._id}
+                username={userData![0].username}
+              />
+            ))
+          : emptyData
+              .filter((el) => el.id == 9)
+              .map((data, key) => <EmptyContent data={data} key={key} />)}
       </div>
     </>
   );
@@ -436,126 +432,69 @@ export const NavbarHomeNavDropdown = ({
 
   return (
     <>
-      <div className="home__nav--dropdown">
-        <div className="home__dropdown--top">
-          <p className="nav__dropdown--subtitle">Relevant</p>
-          {homeCategories
-            ?.filter((data) => data.loggedout != loggedin)
-            .map((cat) => (
-              <section
-                className="nav__category--tile"
-                key={cat.id}
-                onClick={(e) => {
-                  categoryCheck!(cat.title);
-                  iconDetection!(cat.icon);
-                  e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
-                }}
-              >
-                <Icon
-                  icon={cat.icon}
-                  width="13px"
-                  height="13px"
-                  shape={!false}
-                />
-                <p>{cat.title}</p>
-                {mobileMedia == false ? (
-                  <div
-                    className="for__you--info--container"
-                    onMouseOver={() => setInfo(!false)}
-                    onMouseLeave={() => setInfo(false)}
-                  >
-                    {cat.info != "" ? (
-                      <i
-                        className="fa-regular fa-circle-question"
-                        style={
-                          darkActive == !false
-                            ? { color: "var(--white-DM)" }
-                            : undefined
-                        }
-                      ></i>
-                    ) : null}
-                    {info == !false && cat.info != "" ? (
-                      <InformationPopup data={InfoData[0]} />
-                    ) : null}
-                  </div>
-                ) : null}
-              </section>
-            ))}
-        </div>
-        {loggedin == !false ? (
-          <div className="home__dropdown--middle">
-            <p className="nav__dropdown--subtitle">Your favorites</p>
-            {matched?.map((cat) => (
-              <section
-                className="nav__category--tile"
-                key={cat.id}
-                onClick={(e) => {
-                  categoryCheck!(cat.title);
-                  e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
-                  iconDetection!(cat.icon);
-                }}
-              >
-                <Icon
-                  icon={cat.icon}
-                  width="13px"
-                  height="13px"
-                  shape={!false}
-                />
-                <p>{cat.title}</p>
-              </section>
-            ))}
-          </div>
-        ) : (
-          <div className="home__dropdown--middle">
-            <p className="nav__dropdown--subtitle">Popular Categories</p>
-            {loggedOutPopularCats
-              ?.map((cat) => (
-                <section
-                  className="nav__category--tile"
-                  key={cat.id}
-                  onClick={(e) => {
-                    categoryCheck!(cat.title);
-                    e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
-                    iconDetection!(cat.icon);
-                  }}
+      <div className="home__dropdown--top">
+        <p className="nav__dropdown--subtitle">Relevant</p>
+        {homeCategories
+          ?.filter((data) => data.loggedout != loggedin)
+          .map((cat) => (
+            <section
+              className="nav__category--tile"
+              key={cat.id}
+              onClick={(e) => {
+                categoryCheck!(cat.title);
+                iconDetection!(cat.icon);
+                e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
+              }}
+            >
+              <Icon icon={cat.icon} width="13px" height="13px" shape={!false} />
+              <p>{cat.title}</p>
+              {mobileMedia == false ? (
+                <div
+                  className="for__you--info--container"
+                  onMouseOver={() => setInfo(!false)}
+                  onMouseLeave={() => setInfo(false)}
                 >
-                  <Icon
-                    icon={cat.icon}
-                    width="13px"
-                    height="13px"
-                    shape={!false}
-                  />
-                  <p>{cat.title}</p>
-                </section>
-              ))
-              .slice(0, 4)}
-          </div>
-        )}
-
-        <div
-          className="home__dropdown--bottom"
-          onClick={() => {
-            setAllCats(!false);
-            setHelpActive(false);
-            if (allCats == !false) {
-              setAllCats(false);
-            }
-          }}
-        >
-          <p className="nav__dropdown--subtitle">All Categories</p>
-          {allCats == false ? (
-            <i className="fa-solid fa-chevron-right"></i>
-          ) : (
-            <i className="fa-solid fa-chevron-down"></i>
-          )}
+                  {cat.info != "" ? (
+                    <i
+                      className="fa-regular fa-circle-question"
+                      style={
+                        darkActive == !false
+                          ? { color: "var(--white-DM)" }
+                          : undefined
+                      }
+                    ></i>
+                  ) : null}
+                  {info == !false && cat.info != "" ? (
+                    <InformationPopup data={InfoData[0]} />
+                  ) : null}
+                </div>
+              ) : null}
+            </section>
+          ))}
+      </div>
+      {loggedin == !false ? (
+        <div className="home__dropdown--middle">
+          <p className="nav__dropdown--subtitle">Your favorites</p>
+          {matched?.map((cat) => (
+            <section
+              className="nav__category--tile"
+              key={cat.id}
+              onClick={(e) => {
+                categoryCheck!(cat.title);
+                e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
+                iconDetection!(cat.icon);
+              }}
+            >
+              <Icon icon={cat.icon} width="13px" height="13px" shape={!false} />
+              <p>{cat.title}</p>
+            </section>
+          ))}
         </div>
-
-        {allCats == !false ? (
-          <div
-            className="all__categories--container"
-            style={{ animation: "navDropdown 0.2s forwards" }}
-          >
-            {categories?.map((cat) => (
+      ) : (
+        <div className="home__dropdown--middle">
+          <p className="nav__dropdown--subtitle">Popular Categories</p>
+          {loggedOutPopularCats
+            ?.map((cat) => (
               <section
                 className="nav__category--tile"
                 key={cat.id}
@@ -573,47 +512,87 @@ export const NavbarHomeNavDropdown = ({
                 />
                 <p>{cat.title}</p>
               </section>
-            ))}
-          </div>
-        ) : null}
-        <div
-          className="home__dropdown--bottom"
-          onClick={() => {
-            setHelpActive(!false);
+            ))
+            .slice(0, 4)}
+        </div>
+      )}
+
+      <div
+        className="home__dropdown--bottom"
+        onClick={() => {
+          setAllCats(!false);
+          setHelpActive(false);
+          if (allCats == !false) {
             setAllCats(false);
-            if (helpActive == !false) {
-              setHelpActive(false);
-            }
+          }
+        }}
+      >
+        <p className="nav__dropdown--subtitle">All Categories</p>
+        {allCats == false ? (
+          <i className="fa-solid fa-chevron-right"></i>
+        ) : (
+          <i className="fa-solid fa-chevron-down"></i>
+        )}
+      </div>
+
+      {allCats == !false ? (
+        <div
+          className="all__categories--container"
+          style={{ animation: "navDropdown 0.2s forwards" }}
+        >
+          {categories?.map((cat) => (
+            <section
+              className="nav__category--tile"
+              key={cat.id}
+              onClick={(e) => {
+                categoryCheck!(cat.title);
+                e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
+                iconDetection!(cat.icon);
+              }}
+            >
+              <Icon icon={cat.icon} width="13px" height="13px" shape={!false} />
+              <p>{cat.title}</p>
+            </section>
+          ))}
+        </div>
+      ) : null}
+      <div
+        className="home__dropdown--bottom"
+        onClick={() => {
+          setHelpActive(!false);
+          setAllCats(false);
+          if (helpActive == !false) {
+            setHelpActive(false);
+          }
+        }}
+      >
+        <p className="nav__dropdown--subtitle">Help</p>
+        {helpActive == false ? (
+          <i className="fa-solid fa-chevron-right"></i>
+        ) : (
+          <i className="fa-solid fa-chevron-down"></i>
+        )}
+      </div>
+      {helpActive == !false ? (
+        <div
+          className="all__categories--container"
+          style={{
+            animation: "navDropdown 0.2s forwards",
           }}
         >
-          <p className="nav__dropdown--subtitle">Help</p>
-          {helpActive == false ? (
-            <i className="fa-solid fa-chevron-right"></i>
-          ) : (
-            <i className="fa-solid fa-chevron-down"></i>
-          )}
+          {helpOptions?.map((data) => (
+            <section
+              className="nav__category--tile"
+              key={data.id}
+              onClick={() => {
+                window.location.href = `${window.location.origin}/info/${data.path}`;
+              }}
+            >
+              <h4>{data.option}</h4>
+            </section>
+          ))}
         </div>
-        {helpActive == !false ? (
-          <div
-            className="all__categories--container"
-            style={{
-              animation: "navDropdown 0.2s forwards",
-            }}
-          >
-            {helpOptions?.map((data) => (
-              <section
-                className="nav__category--tile"
-                key={data.id}
-                onClick={() => {
-                  window.location.href = `${window.location.origin}/info/${data.path}`;
-                }}
-              >
-                <h4>{data.option}</h4>
-              </section>
-            ))}
-          </div>
-        ) : null}
-      </div>
+      ) : null}
     </>
   );
 };
@@ -627,6 +606,22 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
   const [navDropdown, setNavDropdown] = useState<boolean>(false);
   const [icon, setIcon] = useState<string>("");
   const [loggedOutPopularCats] = useState<LoggedOutPopular[]>(categories);
+  const userDropRef = useRef<any>();
+  const notificationRef = useRef<any>();
+  const menuRef = useRef<any>();
+
+  window.addEventListener("mousedown", (e) => {
+    if (userDropdown && !userDropRef.current?.contains(e.target)) {
+      setUserdropdown(false);
+    }
+
+    if (navDropdown && !notificationRef.current?.contains(e.target)) {
+      setNavDropdown(false);
+    }
+    if (homeDropdown && !menuRef.current?.contains(e.target)) {
+      setHomeDropdown(false);
+    }
+  });
 
   const {
     darkActive,
@@ -732,6 +727,7 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
                   id="home__nav"
                   onBlur={onHomeNavBlur}
                   onFocus={onHomeNavFocus}
+                  onClick={() => setHomeDropdown(!false)}
                   style={
                     mobileMedia == !false
                       ? { background: "none" }
@@ -750,12 +746,14 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
                     <i className="fa-solid fa-chevron-down dropdown__icon"></i>
                   )}
                   {homeDropdown == !false ? (
-                    <NavbarHomeNavDropdown
-                      homeDropdown={homeDropdown}
-                      categoryCheck={categoryCheck}
-                      iconDetection={iconDetection}
-                      loggedOutPopularCats={loggedOutPopularCats}
-                    />
+                    <div className="home__nav--dropdown" ref={menuRef}>
+                      <NavbarHomeNavDropdown
+                        homeDropdown={homeDropdown}
+                        categoryCheck={categoryCheck}
+                        iconDetection={iconDetection}
+                        loggedOutPopularCats={loggedOutPopularCats}
+                      />
+                    </div>
                   ) : null}
                 </button>
               </div>
@@ -788,12 +786,18 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
                 onBlur={onNavBlur}
                 id="notification__nav"
                 onClick={(e) => {
+                  setNavDropdown(!false);
                   setDropdownSelection(e.currentTarget.value);
                 }}
               >
                 <i className="fa-regular fa-bell"></i>
                 {navDropdown == !false && userData != undefined ? (
-                  <NavbarNotificationDrop userData={userData} />
+                  <div
+                    className="notification__dropdown--wrapper"
+                    ref={notificationRef}
+                  >
+                    <NavbarNotificationDrop userData={userData} />
+                  </div>
                 ) : null}
                 {readCount! > 0 ? (
                   <i className="unread__noti fa-solid fa-circle"></i>
@@ -807,6 +811,7 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
                 onFocus={onFocus}
                 onBlur={onBlur}
                 onClick={() => {
+                  setUserdropdown(!false);
                   setDropdownSelection("user");
                 }}
                 style={
@@ -851,11 +856,13 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
                 ) : null}
 
                 {userDropdown == !false && dropdownSelection == "user" ? (
-                  <NavbarUserDrop
-                    username={userData![0]?.username}
-                    profilePic={userData![0].profilePicture}
-                    imgVersion={userData![0].profileImgVersion}
-                  />
+                  <div className="navbar__dropdown--wrapper" ref={userDropRef}>
+                    <NavbarUserDrop
+                      username={userData![0]?.username}
+                      profilePic={userData![0].profilePicture}
+                      imgVersion={userData![0].profileImgVersion}
+                    />
+                  </div>
                 ) : null}
               </button>
             ) : (
