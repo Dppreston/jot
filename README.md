@@ -1,5 +1,9 @@
 <h2>Jot | Short Informational Articles & Social Media</h2>
 
+<h2>Guest Login</h2>
+<h3>Username - guest</h3>
+<h3>Password - 1234</h3>
+
 Jot is a blog and social media platform focused on delivering concise, informative content.
 Key Features
 
