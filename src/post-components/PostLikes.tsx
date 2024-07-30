@@ -50,13 +50,13 @@ const PostLike = ({ userPostData }: PostData) => {
   const fetchLikes = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-posts?likes=true&postId=${
+        `/jot-posts?likes=true&postId=${
           userPostData._id || userPostData[0]!?._id
         }`
       );
       if (loggedin == !false) {
         const likeCheck = await axios.get(
-          `http://localhost:1000/jot-posts?likeUserCheck=true&userId=${token}&postId=${
+          `/jot-posts?likeUserCheck=true&userId=${token}&postId=${
             userPostData._id || userPostData[0]!?._id
           }`
         );
@@ -77,14 +77,14 @@ const PostLike = ({ userPostData }: PostData) => {
   const fetchDislikes = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-posts?dislikes=true&postId=${
+        `/jot-posts?dislikes=true&postId=${
           userPostData._id || userPostData[0]!?._id
         }`
       );
 
       if (loggedin == !false) {
         const dislikeCheck = await axios.get(
-          `http://localhost:1000/jot-posts?dislikeUserCheck=true&userId=${token}&postId=${
+          `/jot-posts?dislikeUserCheck=true&userId=${token}&postId=${
             userPostData._id || userPostData[0]!?._id
           }`
         );
@@ -105,7 +105,7 @@ const PostLike = ({ userPostData }: PostData) => {
     try {
       //add or remove post like
       const res = await axios.put(
-        `http://localhost:1000/jot-posts?postLike=true&postId=${
+        `/jot-posts?postLike=true&postId=${
           userPostData._id || userPostData[0]._id
         }&userId=${token}`
       );
@@ -114,7 +114,7 @@ const PostLike = ({ userPostData }: PostData) => {
         //liker username
 
         const likerUsername = await axios.get(
-          `http://localhost:1000/jot-users?likerUsername=true&userId=${token}`
+          `/jot-users?likerUsername=true&userId=${token}`
         );
 
         //add post like notification
@@ -145,7 +145,7 @@ const PostLike = ({ userPostData }: PostData) => {
   const dislikeFunctionality = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:1000/jot-posts?postDislike=true&postId=${
+        `/jot-posts?postDislike=true&postId=${
           userPostData._id || userPostData[0]._id
         }&userId=${token}`
       );
@@ -154,7 +154,7 @@ const PostLike = ({ userPostData }: PostData) => {
         //disliker username
 
         const likerUsername = await axios.get(
-          `http://localhost:1000/jot-users?likerUsername=true&userId=${token}`
+          `/jot-users?likerUsername=true&userId=${token}`
         );
 
         //add post dislike noti
@@ -184,7 +184,7 @@ const PostLike = ({ userPostData }: PostData) => {
   const userLikeMemory = async () => {
     try {
       await axios.put(
-        `http://localhost:1000/jot-users?userLike=true&postId=${
+        `/jot-users?userLike=true&postId=${
           userPostData._id || userPostData[0]._id
         }&userId=${token}`
       );
@@ -198,7 +198,7 @@ const PostLike = ({ userPostData }: PostData) => {
   const userDislikeMemory = async () => {
     try {
       await axios.put(
-        `http://localhost:1000/jot-users?userDislike=true&postId=${
+        `/jot-users?userDislike=true&postId=${
           userPostData._id || userPostData[0]._id
         }&userId=${token}`
       );

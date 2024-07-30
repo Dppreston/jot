@@ -46,10 +46,7 @@ const CreatePost = () => {
     setIsLoading(!false);
 
     try {
-      const res = await axios.post(
-        "http://localhost:1000/jot-posts?createPost=true",
-        postData
-      );
+      const res = await axios.post("/jot-posts?createPost=true", postData);
       if (res.data) {
         setTimeout(() => {
           setLoadingState(!false);

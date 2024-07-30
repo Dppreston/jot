@@ -26,7 +26,7 @@ const MessageTile = ({ messages, convoId, convoUsers }: MessageTileProps) => {
 
   const handleMessageInteraction = async (messageId: number, type: number) => {
     const res = await axios.put(
-      `http://localhost:1000/jot-messages?messageInteraction=true&messageId=${messageId}&userId=${token}&convoId=${convoId}&type=${type}`
+      `/jot-messages?messageInteraction=true&messageId=${messageId}&userId=${token}&convoId=${convoId}&type=${type}`
     );
 
     //message like notification

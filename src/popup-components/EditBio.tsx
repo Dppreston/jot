@@ -13,14 +13,12 @@ const EditBio = () => {
   const [updateBio, setUpdateBio] = useState<string>(existingBio!);
   const [loading, setLoading] = useState<boolean>(false);
 
-  console.log(existingBio);
-
   //update bio
 
   const updateBioPUT = async () => {
     setLoading(!false);
     const res = await axios.put(
-      `http://localhost:1000/jot-users?bioUpdate=true&userId=${token}&updatedBio=${updateBio}`
+      `/jot-users?bioUpdate=true&userId=${token}&updatedBio=${updateBio}`
     );
     if (res.data == true) {
       setTimeout(() => {

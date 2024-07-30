@@ -86,24 +86,20 @@ const UserProfileTile = ({
 
   const fetchTotalPostLikesDislikes = async () => {
     const totalLikes = await axios.get(
-      `http://localhost:1000/jot-posts?userTileTotalLikes=true&userId=${
-        userData!?._id
-      }`
+      `/jot-posts?userTileTotalLikes=true&userId=${userData!?._id}`
     );
     setTotalPosts(totalLikes.data[1]);
     setTotalLikes(totalLikes.data[0]);
 
     const totalDislikes = await axios.get(
-      `http://localhost:1000/jot-posts?userTileTotalDislikes=true&userId=${
-        userData!?._id
-      }`
+      `/jot-posts?userTileTotalDislikes=true&userId=${userData!?._id}`
     );
     setTotalDislikes(totalDislikes.data);
 
     //total followers and following
 
     const totalFollowersFollowing = await axios.get(
-      `http://localhost:1000/jot-users?totalFollowersFollowing=true&userId=${userData?._id}`
+      `/jot-users?totalFollowersFollowing=true&userId=${userData?._id}`
     );
     setTotalFollowers(totalFollowersFollowing.data[0]);
     setTotalFollowing(totalFollowersFollowing.data[1]);
@@ -123,12 +119,12 @@ const UserProfileTile = ({
   const followUser = async () => {
     // add / remove following to user
     await axios.put(
-      `http://localhost:1000/jot-users?following=true&userId=${token}&currentUserId=${userData?._id}`
+      `/jot-users?following=true&userId=${token}&currentUserId=${userData?._id}`
     );
 
     //add / remove follower to user
     await axios.put(
-      `http://localhost:1000/jot-users?follower=true&userId=${userData?._id}&currentUserId=${token}`
+      `/jot-users?follower=true&userId=${userData?._id}&currentUserId=${token}`
     );
 
     setTimeout(() => {
@@ -139,7 +135,7 @@ const UserProfileTile = ({
   //top posts
   const userTopPosts = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-posts?userTopPosts=true&userId=${userData?._id}`
+      `/jot-posts?userTopPosts=true&userId=${userData?._id}`
     );
     setUserTop(res.data);
   };
@@ -148,7 +144,7 @@ const UserProfileTile = ({
 
   const userTopComments = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-comments?userTopComments=true&userId=${userData?._id}`
+      `/jot-comments?userTopComments=true&userId=${userData?._id}`
     );
     setCommentTop(res.data);
   };
@@ -157,7 +153,7 @@ const UserProfileTile = ({
 
   const followingCheck = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?followingCheck=true&userId=${token}&profileId=${userData?._id}`
+      `/jot-users?followingCheck=true&userId=${token}&profileId=${userData?._id}`
     );
     setFollowCheckRes(res.data);
   };

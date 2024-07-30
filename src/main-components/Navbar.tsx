@@ -147,7 +147,7 @@ export const NavbarUserDrop = ({
 
   const updateDarkmodeToggle = async (active: boolean) => {
     await axios.put(
-      `http://localhost:1000/jot-user-preferences?updateDarkmode=true&userId=${token}&currentState=${active}`
+      `/jot-user-preferences?updateDarkmode=true&userId=${token}&currentState=${active}`
     );
 
     window.themeCheck();
@@ -238,7 +238,7 @@ export const NotificationTile = ({
   const handleRead = async () => {
     try {
       await axios.put(
-        `http://localhost:1000/jot-users?readChange=true&notiId=${notificationData._id}&userId=${token}`
+        `/jot-users?readChange=true&notiId=${notificationData._id}&userId=${token}`
       );
 
       fetchNotifications();
@@ -257,7 +257,7 @@ export const NotificationTile = ({
   const handleNotiDelete = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:1000/jot-users?deleteNotification=true&notiId=${notificationData._id}&userId=${token}`
+        `/jot-users?deleteNotification=true&notiId=${notificationData._id}&userId=${token}`
       );
       if (res.data) {
         setTimeout(() => {
@@ -347,9 +347,7 @@ export const NavbarNotificationDrop = ({ userData }: UserDataProps) => {
 
   const fetchNotifications = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:1000/jot-users?fetchNoti=true&userId=${token}`
-      );
+      const res = await axios.get(`/jot-users?fetchNoti=true&userId=${token}`);
 
       //sort by date
       const dateSort = res.data[0].notifications.sort(
@@ -416,7 +414,7 @@ export const NavbarHomeNavDropdown = ({
   const userFavorites = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-users/?userFavorites=true&userId=${token}`
+        `/jot-users/?userFavorites=true&userId=${token}`
       );
 
       setUserData(res.data);
@@ -655,9 +653,7 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
 
   const userCheck = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:1000/jot-users/?home=true&userId=${token}`
-      );
+      const res = await axios.get(`/jot-users/?home=true&userId=${token}`);
       setUserData(res.data);
     } catch (err) {
       console.log(err);

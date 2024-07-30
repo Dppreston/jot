@@ -41,7 +41,7 @@ const UserProfile = () => {
   const fetchUserData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-users?userProfileUser=true&userId=${userId}`
+        `/jot-users?userProfileUser=true&userId=${userId}`
       );
       if (res.data != null) {
         setUserData(res.data);
@@ -64,7 +64,7 @@ const UserProfile = () => {
 
   const privateProfileCheck = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-user-preferences?privateProfileCheck=true&userId=${userId}`
+      `/jot-user-preferences?privateProfileCheck=true&userId=${userId}`
     );
     setPrivateProfile(res.data);
   };

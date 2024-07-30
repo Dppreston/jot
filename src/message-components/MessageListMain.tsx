@@ -46,7 +46,7 @@ export const MessageNavTile = ({
 
   const userDataFetch = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?messageUsername=true&userId=${otherUserId}`
+      `/jot-users?messageUsername=true&userId=${otherUserId}`
     );
 
     if (res.data) {
@@ -60,12 +60,12 @@ export const MessageNavTile = ({
 
   const deleteConversation = async () => {
     const res = await axios.put(
-      `http://localhost:1000/jot-messages?deleteConversation=true&userId=${token}&convoId=${conversationId}`
+      `/jot-messages?deleteConversation=true&userId=${token}&convoId=${conversationId}`
     );
     if (res.data == !false) {
       //check to change status of convo
       await axios.put(
-        `http://localhost:1000/jot-messages?activeCheck=true&convoId=${conversationId}`
+        `/jot-messages?activeCheck=true&convoId=${conversationId}`
       );
 
       window.location.reload();
@@ -104,7 +104,7 @@ export const MessageNavTile = ({
           <div className="message__tile--right">
             <h3>{username}</h3>
             <h4 className="message__preview">
-              {messageData?.content.substring(0, 25)} ...
+              {messageData?.content.substring(0, 22)} ...
             </h4>
           </div>
         </button>

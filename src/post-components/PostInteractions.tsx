@@ -82,14 +82,12 @@ export const OptionDropdown = ({
   const deletePost = async () => {
     try {
       //remove user Data from post
-      await axios.put(
-        `http://localhost:1000/jot-users?clearPostData=true&postId=${postId}`
-      );
+      await axios.put(`/jot-users?clearPostData=true&postId=${postId}`);
 
       //get ids to delete
 
       const getCommentIdsToDelete = await axios.get(
-        `http://localhost:1000/jot-comments?deletePostIdsToDelete=true&postId=${postId}`
+        `/jot-comments?deletePostIdsToDelete=true&postId=${postId}`
       );
       const filteredIds = getCommentIdsToDelete.data.map(
         (el: { _id: string }) => el._id
@@ -99,26 +97,24 @@ export const OptionDropdown = ({
 
       if (getCommentIdsToDelete.data) {
         const res = await axios.put(
-          `http://localhost:1000/jot-users?deletedComment=true&userId=${token}&idsToDelete=${filteredIds}`
+          `/jot-users?deletedComment=true&userId=${token}&idsToDelete=${filteredIds}`
         );
 
         //deleteComments associated with post
 
         if (res.data == true) {
           await axios.put(
-            `http://localhost:1000/jot-comments?removeCommentsFromDeletedPosts=true&postId=${postId}`
+            `/jot-comments?removeCommentsFromDeletedPosts=true&postId=${postId}`
           );
 
           //delete post
           const deleteRes = await axios.put(
-            `http://localhost:1000/jot-posts?deletePost=true&postId=${postId}`
+            `/jot-posts?deletePost=true&postId=${postId}`
           );
 
           if (deleteRes) {
             window.location.href = "/home";
-            axios.put(
-              `http://localhost:1000/jot-posts?deletePostImg=true&postImg=${postImg}`
-            );
+            axios.put(`/jot-posts?deletePostImg=true&postImg=${postImg}`);
           }
         }
       }
@@ -220,11 +216,11 @@ const PostInteractions = ({ postId, feedTile, postImg }: InteractionProps) => {
   const saveFunctionality = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:1000/jot-users?save=true&postId=${postId}&userId=${token}`
+        `/jot-users?save=true&postId=${postId}&userId=${token}`
       );
 
       const saveUserToPost = await axios.put(
-        `http://localhost:1000/jot-posts?saveUserToPost=true&postId=${postId}&userId=${token}`
+        `/jot-posts?saveUserToPost=true&postId=${postId}&userId=${token}`
       );
 
       setSavedClicked(res.data);
@@ -238,7 +234,7 @@ const PostInteractions = ({ postId, feedTile, postImg }: InteractionProps) => {
   const savedCheck = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-users?savedCheck=true&postId=${postId}&userId=${token}`
+        `/jot-users?savedCheck=true&postId=${postId}&userId=${token}`
       );
       setSavedIds(res.data);
     } catch (err) {
@@ -255,7 +251,7 @@ const PostInteractions = ({ postId, feedTile, postImg }: InteractionProps) => {
   const fetchPosterId = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-posts?posterId=true&userId=${token}&postId=${postId}`
+        `/jot-posts?posterId=true&userId=${token}&postId=${postId}`
       );
       setPostIdConfirmation(res.data);
     } catch (err) {
@@ -266,7 +262,7 @@ const PostInteractions = ({ postId, feedTile, postImg }: InteractionProps) => {
   const fetchCommentCount = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-comments?commentCount=true&postId=${postId}`
+        `/jot-comments?commentCount=true&postId=${postId}`
       );
       setCommentCount(res.data);
     } catch (err) {

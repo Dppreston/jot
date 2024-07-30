@@ -61,7 +61,7 @@ export const SearchAllPostTile = ({ searchResData }: SearchResProps) => {
 
   const postUsernameFetch = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?searchAllUsername=true&userId=${searchResData.userId}`
+      `/jot-users?searchAllUsername=true&userId=${searchResData.userId}`
     );
     setPostUsername(res.data[0].username);
   };
@@ -205,16 +205,14 @@ const SearchAll = () => {
 
   const searchPosts = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-posts?postSearch=true&searchQuery=${searchContent}`
+      `/jot-posts?postSearch=true&searchQuery=${searchContent}`
     );
     setPostSearchRes(res.data[0]);
     setPostShowingLength(res.data[0].length);
     setPostMasterLength(res.data[1]);
 
     if (res.data[0].length === 0) {
-      const res = await axios.get(
-        `http://localhost:1000/jot-posts?searchAllPopular=true`
-      );
+      const res = await axios.get(`/jot-posts?searchAllPopular=true`);
       setPostSearchRes(res.data);
       setPostEmpty(!false);
     }
@@ -224,7 +222,7 @@ const SearchAll = () => {
 
   const loadMorePosts = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-posts?loadMorePosts=true&searchQuery=${searchContent}&postDynamicLength=${postShowingLength}`
+      `/jot-posts?loadMorePosts=true&searchQuery=${searchContent}&postDynamicLength=${postShowingLength}`
     );
 
     setPostSearchRes(res.data[0]);
@@ -235,7 +233,7 @@ const SearchAll = () => {
 
   const searchUsers = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?userSearch=true&searchQuery=${searchContent}&searchAll=true`
+      `/jot-users?userSearch=true&searchQuery=${searchContent}&searchAll=true`
     );
 
     setUserSearchRes(res.data[0]);
@@ -245,13 +243,13 @@ const SearchAll = () => {
     if (res.data[0].length === 0) {
       if (loggedin == !false) {
         const res = await axios.get(
-          `http://localhost:1000/jot-users?recommendedUsers=true&userId=${token} `
+          `/jot-users?recommendedUsers=true&userId=${token} `
         );
         setUserEmpty(!false);
         setUserSearchRes(res.data);
       } else {
         const res = await axios.get(
-          `http://localhost:1000/jot-users?loggedOutRecommendedUsers=true`
+          `/jot-users?loggedOutRecommendedUsers=true`
         );
         setUserEmpty(!false);
         setUserSearchRes(res.data);
@@ -263,7 +261,7 @@ const SearchAll = () => {
 
   const loadMoreUsers = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?loadMoreUsers=true&searchQuery=${searchContent}&userDynamicLength=${userShowingLength}`
+      `/jot-users?loadMoreUsers=true&searchQuery=${searchContent}&userDynamicLength=${userShowingLength}`
     );
     setUserSearchRes(res.data[0]);
     setUserShowingLength(res.data[0].length);

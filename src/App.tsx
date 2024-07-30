@@ -25,6 +25,8 @@ export const UserContext: any = React.createContext(null);
 
 const token: string | null = localStorage.getItem(`token`);
 
+axios.defaults.baseURL = "https://jot-hxxp.onrender.com";
+
 //global functions
 
 declare global {
@@ -866,9 +868,7 @@ function App() {
   //check dark mode
   window.themeCheck = async (id: string) => {
     const res = await axios.get(
-      `http://localhost:1000/jot-user-preferences?theme=true&userId=${
-        id == undefined ? token : id
-      }`
+      `/jot-user-preferences?theme=true&userId=${id == undefined ? token : id}`
     );
     setDarkActive(res.data);
 
@@ -894,13 +894,11 @@ function App() {
   window.recommendedUsers = async (token: string) => {
     if (token) {
       const res = await axios.get(
-        `http://localhost:1000/jot-users?recommendedUsers=true&userId=${token} `
+        `/jot-users?recommendedUsers=true&userId=${token} `
       );
       setUserSuggestions(res.data);
     } else {
-      const res = await axios.get(
-        `http://localhost:1000/jot-users?loggedOutRecommendedUsers=true`
-      );
+      const res = await axios.get(`/jot-users?loggedOutRecommendedUsers=true`);
       setUserSuggestions(res.data);
     }
   };
@@ -910,7 +908,7 @@ function App() {
   window.notificationCheck = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-users?globalNotifications=true&userId=${token}`
+        `/jot-users?globalNotifications=true&userId=${token}`
       );
       setReadCount(res.data[0].length);
     } catch (err) {}
@@ -920,7 +918,7 @@ function App() {
 
   window.followRequestAlert = async (userId?: string) => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?followRequestAlert=true&userId=${token}&userProfileId=${userId}`
+      `/jot-users?followRequestAlert=true&userId=${token}&userProfileId=${userId}`
     );
     setFollowRequestAlerts(res.data);
 
@@ -933,7 +931,7 @@ function App() {
 
   window.globalUserMessageCheck = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-messages?globalUserMessageFetch=true&userId=${token}`
+      `/jot-messages?globalUserMessageFetch=true&userId=${token}`
     );
     if (res.data != false) {
       setMessageData(res.data);
@@ -947,7 +945,7 @@ function App() {
     selectedUnread?: boolean
   ) => {
     const res = await axios.put(
-      `http://localhost:1000/jot-messages?setUnread=true&convoId=${conversationId}&userId=${token}&selectedUnread=${selectedUnread}`
+      `/jot-messages?setUnread=true&convoId=${conversationId}&userId=${token}&selectedUnread=${selectedUnread}`
     );
     setMessageRead(res.data);
   };
@@ -956,7 +954,7 @@ function App() {
 
   window.handleNotification = async (notificationData: NotificationData) => {
     const notiRes = await axios.put(
-      `http://localhost:1000/jot-users?notification=true&referenceUserId=${notificationData.referenceUserId}&username=${notificationData.username}&likerId=${notificationData.actionUserId}&referenceId=${notificationData.referenceId}&type=${notificationData.type}`
+      `/jot-users?notification=true&referenceUserId=${notificationData.referenceUserId}&username=${notificationData.username}&likerId=${notificationData.actionUserId}&referenceId=${notificationData.referenceId}&type=${notificationData.type}`
     );
 
     setNotificationResType(notiRes.data);

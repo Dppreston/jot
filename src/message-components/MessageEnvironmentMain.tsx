@@ -138,7 +138,7 @@ const MessageEnvironmentMain = ({
 
   const newMessageUserSearch = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?newMessageUserSearch=true&searchQuery=${searchQuery}&userId=${token}`
+      `/jot-users?newMessageUserSearch=true&searchQuery=${searchQuery}&userId=${token}`
     );
     setUserSearchData(res.data);
   };
@@ -157,7 +157,7 @@ const MessageEnvironmentMain = ({
 
   const newConvoCheck = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-messages?convoCheck=true&receiverId=${selectedUser?._id}&userId=${token}`
+      `/jot-messages?convoCheck=true&receiverId=${selectedUser?._id}&userId=${token}`
     );
     setConvoCheckRes(res.data);
 
@@ -176,7 +176,7 @@ const MessageEnvironmentMain = ({
       receiver: selectedUser?._id,
     };
     const res = await axios.post(
-      `http://localhost:1000/jot-messages?initConversation=true`,
+      `/jot-messages?initConversation=true`,
       conversationData
     );
 
@@ -213,7 +213,7 @@ const MessageEnvironmentMain = ({
 
   const sendMessage = async () => {
     const res = await axios.put(
-      `http://localhost:1000/jot-messages?sendMessage=true&convoId=${
+      `/jot-messages?sendMessage=true&convoId=${
         selectedConvoData![0]._id
       }&messageContent=${messageContent}&senderId=${token}&receiverId=${selectedConvoData![0].users?.find(
         (el) => el != token
@@ -243,7 +243,7 @@ const MessageEnvironmentMain = ({
       //add new message to reciving unread
 
       await axios.put(
-        `http://localhost:1000/jot-messages?sentMessageUnread=true&convoId=${
+        `/jot-messages?sentMessageUnread=true&convoId=${
           selectedConvoData![0]._id
         }&receiverId=${selectedConvoData![0].users?.find((el) => el != token)}`
       );

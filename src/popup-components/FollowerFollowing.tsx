@@ -22,14 +22,14 @@ const FollowerFollowing = ({ action, close, userId }: FFProps) => {
 
   const fetchFF = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?fetchFF=true&userId=${userId}&FFOption=${action}`
+      `/jot-users?fetchFF=true&userId=${userId}&FFOption=${action}`
     );
     setFFData(res.data);
   };
 
   const searchFF = async (ffSearchContent: string) => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?searchFF=true&userId=${userId}&FFOption=${action}&ffSearchContent=${ffSearchContent}`
+      `/jot-users?searchFF=true&userId=${userId}&FFOption=${action}&ffSearchContent=${ffSearchContent}`
     );
     setFFData(res.data);
   };

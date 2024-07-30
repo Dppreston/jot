@@ -58,12 +58,12 @@ const Report = ({ data }: ReportProps) => {
 
   const handleFetchReportPostData = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-posts?reportPostData=true&postId=${data.reportReferenceId}`
+      `/jot-posts?reportPostData=true&postId=${data.reportReferenceId}`
     );
     if (res.data.length != 0) {
       //fetch username of post
       const usernameRes = await axios.get(
-        `http://localhost:1000/jot-users?reportUsername=true&userId=${res.data[0].userId}`
+        `/jot-users?reportUsername=true&userId=${res.data[0].userId}`
       );
       if (usernameRes.data.length != 0) {
         setReportDataFinal({
@@ -81,13 +81,13 @@ const Report = ({ data }: ReportProps) => {
 
   const handleFetchReportCommentData = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-comments?reportData=true&commentId=${data.reportReferenceId}`
+      `/jot-comments?reportData=true&commentId=${data.reportReferenceId}`
     );
 
     if (res.data.length != 0) {
       //fetch username of post
       const usernameRes = await axios.get(
-        `http://localhost:1000/jot-users?reportUsername=true&userId=${res.data[0].userId}`
+        `/jot-users?reportUsername=true&userId=${res.data[0].userId}`
       );
       if (usernameRes.data.length != 0) {
         setReportDataFinal({
@@ -126,7 +126,7 @@ const Report = ({ data }: ReportProps) => {
   const handleReportSubmit = async () => {
     setLoaderActive(!false);
     const res = await axios.post(
-      `http://localhost:1000/jot-reports?newReport=true&reportReasons=${JSON.stringify(
+      `/jot-reports?newReport=true&reportReasons=${JSON.stringify(
         selectedReportReasons
       )}`,
       reportDataFinal

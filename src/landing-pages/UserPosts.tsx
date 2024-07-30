@@ -50,7 +50,7 @@ const UserPosts = () => {
       //limited post fetch && full length
 
       const res = await axios.get(
-        `http://localhost:1000/jot-posts?specificUserPosts=true&userId=${userId}&sortOption=${sort}&categorySort=${categorySort}`
+        `/jot-posts?specificUserPosts=true&userId=${userId}&sortOption=${sort}&categorySort=${categorySort}`
       );
 
       if (res.data != null) {
@@ -79,7 +79,7 @@ const UserPosts = () => {
   const dynamicLoading = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-posts?specificUserLoader=true&inView=${inView}&userLength=${dynamicLength}&userId=${userId}&currentCategory=${categorySort}&sortOption=${sort}`
+        `/jot-posts?specificUserLoader=true&inView=${inView}&userLength=${dynamicLength}&userId=${userId}&currentCategory=${categorySort}&sortOption=${sort}`
       );
       setPostData(res.data);
 
@@ -148,9 +148,7 @@ const UserPosts = () => {
   //date joined
 
   const fetchUserCreationDate = async () => {
-    const res = await axios.get(
-      `http://localhost:1000/jot-users?memberSince=true&userId=${userId}`
-    );
+    const res = await axios.get(`/jot-users?memberSince=true&userId=${userId}`);
     if (res.data) {
       const memberMonth = new Date(res.data![0]?.creationDate)
         .getMonth()
@@ -169,9 +167,7 @@ const UserPosts = () => {
   //fetch img details
 
   const fetchImgDetails = async () => {
-    const res = await axios.get(
-      `http://localhost:1000/jot-users?imgDetails=true&userId=${userId}`
-    );
+    const res = await axios.get(`/jot-users?imgDetails=true&userId=${userId}`);
     setProfilePic(res.data[0].profilePicture);
     setProfileImgVersion(res.data[0].profileImgVersion);
   };
@@ -255,19 +251,19 @@ const UserPosts = () => {
           {bottomReached == !false && postData!?.length > 3 ? (
             <BottomReached handleBottomClick={handleBottomClick} />
           ) : null}
+          {mobileMedia == false ? (
+            <div className="site__column--wrapper">
+              <ProfileSideTile
+                username={username}
+                profilePic={profilePic}
+                userId={userId}
+                memberSince={memberSince}
+                imgVersion={profileImgVersion}
+                button={true}
+              />
+            </div>
+          ) : null}
         </div>
-        {mobileMedia == false ? (
-          <div className="site__column--wrapper">
-            <ProfileSideTile
-              username={username}
-              profilePic={profilePic}
-              userId={userId}
-              memberSince={memberSince}
-              imgVersion={profileImgVersion}
-              button={true}
-            />
-          </div>
-        ) : null}
       </div>
     </>
   );

@@ -218,9 +218,7 @@ export const PostDisplay = ({
 
   const fetchPostImg = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-posts?fetchPostImg=true&postImgId=${
-        postData![0].postImg
-      }`
+      `/jot-posts?fetchPostImg=true&postImgId=${postData![0].postImg}`
     );
 
     if (res.data != false) {
@@ -302,9 +300,7 @@ const Post = () => {
 
   const fetchPostFinal = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:1000/jot-posts?postFinal=true&postId=${postId}`
-      );
+      const res = await axios.get(`/jot-posts?postFinal=true&postId=${postId}`);
 
       if (res.data != null) {
         setPostdata(res.data);
@@ -321,9 +317,7 @@ const Post = () => {
   const fetchPostUserFinal = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-users?userFinal=true&postUserId=${
-          postData![0].userId
-        }`
+        `/jot-users?userFinal=true&postUserId=${postData![0].userId}`
       );
       setUserData(res.data);
     } catch (err) {
@@ -335,9 +329,7 @@ const Post = () => {
 
   const fetchOtherPosts = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-posts?otherPosts=true&userId=${
-        userData![0]._id
-      }`
+      `/jot-posts?otherPosts=true&userId=${userData![0]._id}`
     );
     setOtherPosts(res.data);
   };

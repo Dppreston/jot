@@ -20,7 +20,7 @@ const FollowRequest = ({ userData }: FollowRequestProps) => {
 
   const confirmFollow = async () => {
     const res = await axios.put(
-      `http://localhost:1000/jot-users?confirmFollowRequest=true&userId=${token}&requestUserId=${userData._id}`
+      `/jot-users?confirmFollowRequest=true&userId=${token}&requestUserId=${userData._id}`
     );
     if (res.data == true) {
       window.followRequestAlert();
@@ -29,7 +29,7 @@ const FollowRequest = ({ userData }: FollowRequestProps) => {
 
   const rejectFollow = async () => {
     const res = await axios.put(
-      `http://localhost:1000/jot-users?rejectFollowRequest=true&userId=${token}&requestUserId=${userData._id}`
+      `/jot-users?rejectFollowRequest=true&userId=${token}&requestUserId=${userData._id}`
     );
     if (res.data == true) {
       window.followRequestAlert();

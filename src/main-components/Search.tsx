@@ -62,7 +62,7 @@ export const SearchDropdown = ({ searchContent }: SearchContentProps) => {
 
   const searchPosts = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-posts?postSearch=true&searchQuery=${searchContent}`
+      `/jot-posts?postSearch=true&searchQuery=${searchContent}`
     );
     setPostSearchRes(res.data[0]);
   };
@@ -70,7 +70,7 @@ export const SearchDropdown = ({ searchContent }: SearchContentProps) => {
 
   const searchUsers = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?userSearch=true&searchQuery=${searchContent}&searchAll=false`
+      `/jot-users?userSearch=true&searchQuery=${searchContent}&searchAll=false`
     );
     setUserSearchRes(res.data[0]);
   };

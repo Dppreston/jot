@@ -58,7 +58,7 @@ const Messages = () => {
 
   window.selectedConvoFetch = async (_id: string) => {
     const res = await axios.get(
-      `http://localhost:1000/jot-messages?selectedConvoFetch=true&convoId=${_id}`
+      `/jot-messages?selectedConvoFetch=true&convoId=${_id}`
     );
     setSelectedConvoData(res.data);
   };
@@ -72,7 +72,7 @@ const Messages = () => {
 
       if (otherUserId && convoStarterId) {
         const selectedConvoUsername = await axios.get(
-          `http://localhost:1000/jot-users?messageUsername=true&userId=${otherUserId}&convoStarterId=${convoStarterId}`
+          `/jot-users?messageUsername=true&userId=${otherUserId}&convoStarterId=${convoStarterId}`
         );
 
         if (selectedConvoUsername.data) {
@@ -100,16 +100,6 @@ const Messages = () => {
   }, [selectedConvoData]);
 
   // //selected convo read update
-
-  // const selectedConvoReadUpdate = async () => {
-  //   const res = await axios.put(
-  //     `http://localhost:1000/jot-messages?selectedReadUpdate=true&convoId=${selectedConversationId}&userId=${token}`
-  //   );
-
-  //   if (res.data == !false) {
-  //     window.globalMessageCheck();
-  //   }
-  // };
 
   useEffect(() => {
     window.globalUserMessageCheck();

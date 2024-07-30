@@ -62,7 +62,7 @@ const UpdateFavorites = () => {
     setLoading(!false);
 
     const res = await axios.put(
-      `http://localhost:1000/jot-users?updateFavoriteCategories=true&userId=${token}&updatedFavorites=${ids}`
+      `/jot-users?updateFavoriteCategories=true&userId=${token}&updatedFavorites=${ids}`
     );
 
     if (res.data == true) {

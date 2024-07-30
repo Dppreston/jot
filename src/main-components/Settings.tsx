@@ -79,7 +79,7 @@ export const ProfileSettings = ({
 
   const updatePrivateProfile = async (active: boolean) => {
     const res = await axios.put(
-      `http://localhost:1000/jot-user-preferences?privateProfile=true&userId=${token}&currentState=${active}`
+      `/jot-user-preferences?privateProfile=true&userId=${token}&currentState=${active}`
     );
   };
 
@@ -98,7 +98,7 @@ export const ProfileSettings = ({
     };
     setLoading(!false);
     const res = await axios.post(
-      `http://localhost:1000/jot-users?updateProfilePicture=true&picUsername=${profileSettingsData.username}&userId=${token}`,
+      `/jot-users?updateProfilePicture=true&picUsername=${profileSettingsData.username}&userId=${token}`,
       body
     );
 
@@ -106,7 +106,7 @@ export const ProfileSettings = ({
 
     if (res.data[0] == true) {
       const versionUpdate = await axios.put(
-        `http://localhost:1000/jot-users?versionUpdate=true&userId=${token}&version=${res.data[1]}`
+        `/jot-users?versionUpdate=true&userId=${token}&version=${res.data[1]}`
       );
       setLoading(false);
       setLoadingDone(!false);
@@ -410,7 +410,7 @@ export const AccountSettings = ({
     const numberFormat = /[ 1234567890 ]/;
 
     const oldPasswordCheck = await axios.get(
-      `http://localhost:1000/jot-user-sensitive?oldPasswordCheck=true&userId=${token}&oldPassword=${passwordDataOld}`
+      `/jot-user-sensitive?oldPasswordCheck=true&userId=${token}&oldPassword=${passwordDataOld}`
     );
 
     //uppercase Check
@@ -456,7 +456,7 @@ export const AccountSettings = ({
   const updateAccountSettings = async () => {
     setLoading(!false);
     const res = await axios.put(
-      `http://localhost:1000/jot-user-sensitive?updateAccountSettings=true&userId=${token}&updatedAccountData=${JSON.stringify(
+      `/jot-user-sensitive?updateAccountSettings=true&userId=${token}&updatedAccountData=${JSON.stringify(
         updatedAccountData
       )}`
     );
@@ -802,7 +802,7 @@ export const Preferences = ({ selection, preferenceData }: PreferenceProps) => {
 
   const updateDarkmodeToggle = async (active: boolean) => {
     const res = await axios.put(
-      `http://localhost:1000/jot-user-preferences?updateDarkmode=true&userId=${token}&currentState=${active}`
+      `/jot-user-preferences?updateDarkmode=true&userId=${token}&currentState=${active}`
     );
     window.themeCheck(token);
   };

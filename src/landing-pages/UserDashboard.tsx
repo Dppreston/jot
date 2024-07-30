@@ -200,7 +200,7 @@ const UserDashboard = () => {
   const fetchCats = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-posts?allSelection=true&userSelection=${menuSelection}&userId=${token}`
+        `/jot-posts?allSelection=true&userSelection=${menuSelection}&userId=${token}`
       );
 
       setUserPostData(res.data[0]);
@@ -221,9 +221,7 @@ const UserDashboard = () => {
 
   const fetchDashboardUser = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:1000/jot-users?dashboard=true&userId=${token}`
-      );
+      const res = await axios.get(`/jot-users?dashboard=true&userId=${token}`);
       setUserData(res.data);
     } catch (err) {
       console.log(err);
@@ -233,9 +231,7 @@ const UserDashboard = () => {
   //fetch profile settings
 
   const fetchProfileSettings = async () => {
-    const res = await axios.get(
-      `http://localhost:1000/jot-users?profileSet=true&userId=${token}`
-    );
+    const res = await axios.get(`/jot-users?profileSet=true&userId=${token}`);
 
     setProfileSettingsData(res.data);
   };
@@ -244,14 +240,14 @@ const UserDashboard = () => {
 
   const fetchAccountSettings = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-user-sensitive?userSens=true&userId=${token}`
+      `/jot-user-sensitive?userSens=true&userId=${token}`
     );
     setAccountData(res.data);
   };
 
   const fetchPreferences = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-user-preferences?userPreferences=true&userId=${token}`
+      `/jot-user-preferences?userPreferences=true&userId=${token}`
     );
     setPreferenceData(res.data);
   };
@@ -261,7 +257,7 @@ const UserDashboard = () => {
   const dynamicLoading = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-posts?userLoader=true&userSelection=${menuSelection}&inView=${inView}&userLength=${dynamicLength}&userId=${token}`
+        `/jot-posts?userLoader=true&userSelection=${menuSelection}&inView=${inView}&userLength=${dynamicLength}&userId=${token}`
       );
       setUserPostData(res.data);
 

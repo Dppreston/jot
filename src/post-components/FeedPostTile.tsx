@@ -66,7 +66,7 @@ const FeedPostTile = ({ userPostData }: PostData) => {
   const tileUserData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-users?postTile=true&postUser=${userPostData?.userId}`
+        `/jot-users?postTile=true&postUser=${userPostData?.userId}`
       );
       setPostUserData(res.data);
     } catch (err) {
@@ -76,7 +76,7 @@ const FeedPostTile = ({ userPostData }: PostData) => {
 
   const fetchPostImg = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-posts?fetchPostImg=true&postImgId=${userPostData?.postImg}`
+      `/jot-posts?fetchPostImg=true&postImgId=${userPostData?.postImg}`
     );
 
     if (res.data != false) {

@@ -49,7 +49,7 @@ const MainFeed = ({ selectedCategory }: SelectedCategory) => {
   const categorySelection = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-posts/?homeCategory=true&categorySelection=${selectedCategory}&sortOption=${sort}`
+        `/jot-posts/?homeCategory=true&categorySelection=${selectedCategory}&sortOption=${sort}`
       );
 
       if (res.data) {
@@ -58,7 +58,7 @@ const MainFeed = ({ selectedCategory }: SelectedCategory) => {
       }
 
       const allPostLength = await axios.get(
-        `http://localhost:1000/jot-posts?loaderCheck=true&selectedCategory=${selectedCategory}`
+        `/jot-posts?loaderCheck=true&selectedCategory=${selectedCategory}`
       );
 
       if (allPostLength.data == res.data.length) {
@@ -80,11 +80,11 @@ const MainFeed = ({ selectedCategory }: SelectedCategory) => {
   const dynamicLoading = async () => {
     try {
       const fetchFollowers = await axios.get(
-        `http://localhost:1000/jot-users?followers=true&userId=${token}`
+        `/jot-users?followers=true&userId=${token}`
       );
 
       const res = await axios.get(
-        `http://localhost:1000/jot-posts?loadPosts=true&categorySelection=${selectedCategory}&inView=${inView}&length=${dynamicLength}&forYouTransfer=${transferForYou}&sortOption=${sort}&followers=${fetchFollowers.data[0].followers}`
+        `/jot-posts?loadPosts=true&categorySelection=${selectedCategory}&inView=${inView}&length=${dynamicLength}&forYouTransfer=${transferForYou}&sortOption=${sort}&followers=${fetchFollowers.data[0].followers}`
       );
 
       if (res.data) {
@@ -96,7 +96,7 @@ const MainFeed = ({ selectedCategory }: SelectedCategory) => {
       //all category posts reference
 
       const allPostLength = await axios.get(
-        `http://localhost:1000/jot-posts?loaderCheck=true&selectedCategory=${selectedCategory}&forYouTransfer=${transferForYou}&followers=${fetchFollowers.data[0].followers}`
+        `/jot-posts?loaderCheck=true&selectedCategory=${selectedCategory}&forYouTransfer=${transferForYou}&followers=${fetchFollowers.data[0].followers}`
       );
 
       if (allPostLength.data == dynamicLength) {
@@ -120,7 +120,7 @@ const MainFeed = ({ selectedCategory }: SelectedCategory) => {
 
   const guestLoading = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-posts?guestLoadPosts=true&categorySelection=${selectedCategory}&inView=${inView}&length=${dynamicLength}&sortOption=${sort}`
+      `/jot-posts?guestLoadPosts=true&categorySelection=${selectedCategory}&inView=${inView}&length=${dynamicLength}&sortOption=${sort}`
     );
 
     if (res.data) {
@@ -132,7 +132,7 @@ const MainFeed = ({ selectedCategory }: SelectedCategory) => {
     //all category posts reference
 
     const allPostLength = await axios.get(
-      `http://localhost:1000/jot-posts?guestLoaderCheck=true&selectedCategory=${selectedCategory}`
+      `/jot-posts?guestLoaderCheck=true&selectedCategory=${selectedCategory}`
     );
 
     if (allPostLength.data == dynamicLength) {
@@ -152,11 +152,11 @@ const MainFeed = ({ selectedCategory }: SelectedCategory) => {
   const justForYou = async () => {
     try {
       const fetchUserFavorites = await axios.get(
-        `http://localhost:1000/jot-users?homeFavorites=true&userId=${token}`
+        `/jot-users?homeFavorites=true&userId=${token}`
       );
 
       const fetchFollowers = await axios.get(
-        `http://localhost:1000/jot-users?followers=true&userId=${token}`
+        `/jot-users?followers=true&userId=${token}`
       );
 
       //category titles match
@@ -174,7 +174,7 @@ const MainFeed = ({ selectedCategory }: SelectedCategory) => {
 
           if (matchedTitles) {
             const forYouPosts = await axios.get(
-              `http://localhost:1000/jot-posts?justForYou=true&titles=${matchedTitles}&sortOption=${sort}&followers=${fetchFollowers.data[0].followers}`
+              `/jot-posts?justForYou=true&titles=${matchedTitles}&sortOption=${sort}&followers=${fetchFollowers.data[0].followers}`
             );
 
             setPostData(forYouPosts.data);

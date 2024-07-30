@@ -221,7 +221,7 @@ export const CommentReply = ({
 
   const fetchParentId = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-comments?commentParentId=true&commentId=${commentId}`
+      `/jot-comments?commentParentId=true&commentId=${commentId}`
     );
     if (res.data[0].commentParentId == "") {
       setParentId(commentId);
@@ -243,7 +243,7 @@ export const CommentReply = ({
   // add comment reply
   const addReply = async () => {
     const res = await axios.post(
-      `http://localhost:1000/jot-comments?commentReply=true`,
+      `/jot-comments?commentReply=true`,
       replyPostData
     );
 
@@ -251,7 +251,7 @@ export const CommentReply = ({
       //reply notification add // remove
 
       const usernameForCommentNoti = await axios.get(
-        `http://localhost:1000/jot-users?likerUsername=true&userId=${token}`
+        `/jot-users?likerUsername=true&userId=${token}`
       );
 
       // //add new reply notification
@@ -338,7 +338,7 @@ export const CommentTile = ({
   const fetchCommentUsername = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-users?fetchCommentUsername=true&commentUser=${commentData.userId}`
+        `/jot-users?fetchCommentUsername=true&commentUser=${commentData.userId}`
       );
       setUserData(res.data);
     } catch (err) {
@@ -351,12 +351,12 @@ export const CommentTile = ({
   const updateCommentUserLike = async () => {
     try {
       const userCommentRes = await axios.put(
-        `http://localhost:1000/jot-users?commentLike=true&commentId=${commentData._id}&userId=${token}`
+        `/jot-users?commentLike=true&commentId=${commentData._id}&userId=${token}`
       );
 
       if (userCommentRes) {
         const likeRes = await axios.put(
-          `http://localhost:1000/jot-comments?commentLikes=true&commentId=${commentData._id}&userLikedRes=${userCommentRes.data}`
+          `/jot-comments?commentLikes=true&commentId=${commentData._id}&userLikedRes=${userCommentRes.data}`
         );
 
         //add/remove user to comment
@@ -366,12 +366,12 @@ export const CommentTile = ({
         if (matchedIds == undefined) {
           //add user to comment
           await axios.put(
-            `http://localhost:1000/jot-comments?addUserLikeToComment=true&commentId=${commentData._id}&userId=${token}`
+            `/jot-comments?addUserLikeToComment=true&commentId=${commentData._id}&userId=${token}`
           );
         } else {
           //remove user from comment
           await axios.put(
-            `http://localhost:1000/jot-comments?removeUserLikeFromComment=true&commentId=${commentData._id}&matched=${matchedIds}`
+            `/jot-comments?removeUserLikeFromComment=true&commentId=${commentData._id}&matched=${matchedIds}`
           );
         }
 
@@ -380,13 +380,13 @@ export const CommentTile = ({
         //comment notification add // remove
 
         const usernameForCommentNoti = await axios.get(
-          `http://localhost:1000/jot-users?likerUsername=true&userId=${token}`
+          `/jot-users?likerUsername=true&userId=${token}`
         );
 
         if (likeRes.data == true && commentData.userId !== token) {
           //add comment like noti
           await axios.put(
-            `http://localhost:1000/jot-users?commentLikeNoti=true&commentUserId=${commentData.userId}&username=${usernameForCommentNoti.data[0].username}&likerId=${token}&commentId=${commentData._id}&postId=${postId}`
+            `/jot-users?commentLikeNoti=true&commentUserId=${commentData.userId}&username=${usernameForCommentNoti.data[0].username}&likerId=${token}&commentId=${commentData._id}&postId=${postId}`
           );
         }
       }
@@ -401,12 +401,12 @@ export const CommentTile = ({
   const updateCommentUserDislike = async () => {
     try {
       const userCommentRes = await axios.put(
-        `http://localhost:1000/jot-users?commentDislike=true&commentId=${commentData._id}&userId=${token}`
+        `/jot-users?commentDislike=true&commentId=${commentData._id}&userId=${token}`
       );
 
       if (userCommentRes) {
         const dislikedRes = await axios.put(
-          `http://localhost:1000/jot-comments?commentDislikes=true&commentId=${commentData._id}&userDislikedRes=${userCommentRes.data}`
+          `/jot-comments?commentDislikes=true&commentId=${commentData._id}&userDislikedRes=${userCommentRes.data}`
         );
 
         const matchedIds = commentData.dislikedUsers.find((id) => id == token);
@@ -414,12 +414,12 @@ export const CommentTile = ({
         if (matchedIds == undefined) {
           //add user to comment
           await axios.put(
-            `http://localhost:1000/jot-comments?addUserDisLikeToComment=true&commentId=${commentData._id}&userId=${token}`
+            `/jot-comments?addUserDisLikeToComment=true&commentId=${commentData._id}&userId=${token}`
           );
         } else {
           //remove user from comment
           await axios.put(
-            `http://localhost:1000/jot-comments?removeUserDisLikeFromComment=true&commentId=${commentData._id}&matched=${matchedIds}`
+            `/jot-comments?removeUserDisLikeFromComment=true&commentId=${commentData._id}&matched=${matchedIds}`
           );
         }
         interactionCheck();
@@ -427,13 +427,13 @@ export const CommentTile = ({
         //comment notification add // remove
 
         const usernameForCommentNoti = await axios.get(
-          `http://localhost:1000/jot-users?likerUsername=true&userId=${token}`
+          `/jot-users?likerUsername=true&userId=${token}`
         );
 
         if (dislikedRes.data == true && commentData.userId !== token) {
           //add comment noti
           await axios.put(
-            `http://localhost:1000/jot-users?commentDisLikeNoti=true&commentUserId=${commentData.userId}&username=${usernameForCommentNoti.data[0].username}&likerId=${token}&commentId=${commentData._id}&postId=${postId}`
+            `/jot-users?commentDisLikeNoti=true&commentUserId=${commentData.userId}&username=${usernameForCommentNoti.data[0].username}&likerId=${token}&commentId=${commentData._id}&postId=${postId}`
           );
         }
 
@@ -449,10 +449,10 @@ export const CommentTile = ({
   const interactionCheck = async () => {
     try {
       const likeRes = await axios.get(
-        `http://localhost:1000/jot-comments?commentLikeCheck=true&userId=${token}&commentId=${commentData._id}`
+        `/jot-comments?commentLikeCheck=true&userId=${token}&commentId=${commentData._id}`
       );
       const dislikeRes = await axios.get(
-        `http://localhost:1000/jot-comments?commentDislikeCheck=true&userId=${token}&commentId=${commentData._id}`
+        `/jot-comments?commentDislikeCheck=true&userId=${token}&commentId=${commentData._id}`
       );
       if (likeRes.data == true) {
         setLikeRes(likeRes.data);
@@ -479,7 +479,7 @@ export const CommentTile = ({
 
   const fetchReplies = async () => {
     const replyRes = await axios.get(
-      `http://localhost:1000/jot-comments?fetchReplies=true&parentCommentId=${commentData._id}`
+      `/jot-comments?fetchReplies=true&parentCommentId=${commentData._id}`
     );
 
     setReplyData(replyRes.data);
@@ -490,7 +490,7 @@ export const CommentTile = ({
   const deleteComment = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:1000/jot-comments?commentDelete=true&commentId=${
+        `/jot-comments?commentDelete=true&commentId=${
           commentData ? commentData._id : null
         }`
       );
@@ -500,9 +500,7 @@ export const CommentTile = ({
         window.fetchComments();
       }
 
-      await axios.put(
-        `http://localhost:1000/jot-posts?updateCommentCount=true&postId=${postId}`
-      );
+      await axios.put(`/jot-posts?updateCommentCount=true&postId=${postId}`);
     } catch (err) {
       console.log(err);
     }
@@ -513,13 +511,13 @@ export const CommentTile = ({
   const removeLikeDataFromUser = async () => {
     try {
       const test = await axios.get(
-        `http://localhost:1000/jot-comments?idsToDelete=true&commentId=${commentData._id}`
+        `/jot-comments?idsToDelete=true&commentId=${commentData._id}`
       );
       const filteredIds = test.data.map((el: { _id: string }) => el._id);
 
       if (test.data) {
         const res = await axios.put(
-          `http://localhost:1000/jot-users?deletedComment=true&userId=${token}&idsToDelete=${filteredIds}`
+          `/jot-users?deletedComment=true&userId=${token}&idsToDelete=${filteredIds}`
         );
       }
     } catch (err) {
@@ -781,9 +779,7 @@ const Comments = ({ postData }: PostData) => {
   window.fetchComments = async function () {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-comments?fetchComments=true&postId=${
-          postData![0]._id
-        }`
+        `/jot-comments?fetchComments=true&postId=${postData![0]._id}`
       );
 
       setDynamicLength(res.data[1]);
@@ -801,7 +797,7 @@ const Comments = ({ postData }: PostData) => {
   const loadMoreComments = async () => {
     setLoading(!false);
     const res = await axios.get(
-      `http://localhost:1000/jot-comments?loadMoreComments=true&postId=${
+      `/jot-comments?loadMoreComments=true&postId=${
         postData![0]._id
       }&dynamicLength=${dynamicLength}&sortSelection=${sortSelection}`
     );
@@ -821,7 +817,7 @@ const Comments = ({ postData }: PostData) => {
   const sortComments = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-comments?sortComments=true&sortSelection=${sortSelection}&postId=${
+        `/jot-comments?sortComments=true&sortSelection=${sortSelection}&postId=${
           postData![0]._id
         }`
       );
@@ -843,7 +839,7 @@ const Comments = ({ postData }: PostData) => {
     };
     try {
       const res = await axios.post(
-        `http://localhost:1000/jot-comments?newComment=true`,
+        `/jot-comments?newComment=true`,
         commentData
       );
       postCommentCount();
@@ -860,7 +856,7 @@ const Comments = ({ postData }: PostData) => {
         //comment notification add // remove
 
         const usernameForCommentNoti = await axios.get(
-          `http://localhost:1000/jot-users?likerUsername=true&userId=${token}`
+          `/jot-users?likerUsername=true&userId=${token}`
         );
 
         //add new comment notification
@@ -887,11 +883,7 @@ const Comments = ({ postData }: PostData) => {
 
   const postCommentCount = async () => {
     try {
-      await axios.put(
-        `http://localhost:1000/jot-posts?addComment=true&postId=${
-          postData![0]._id
-        }`
-      );
+      await axios.put(`/jot-posts?addComment=true&postId=${postData![0]._id}`);
     } catch (err) {}
   };
 

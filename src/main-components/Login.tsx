@@ -203,16 +203,13 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
     setIsLoading(!false);
     setLoadingState(false);
     try {
-      const res = await axios.post(
-        "http://localhost:1000/jot-users?createAccount=true",
-        signupData
-      );
+      const res = await axios.post("/jot-users?createAccount=true", signupData);
 
       if (res.data == true) {
         //retrieve username for new userId
 
         const newUserIdRes = await axios.get(
-          `http://localhost:1000/jot-users?usernameForSensitive=true&username=${username}`
+          `/jot-users?usernameForSensitive=true&username=${username}`
         );
 
         if (newUserIdRes.data.length > 0) {
@@ -228,7 +225,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
           };
 
           const sensitiveRes = await axios.post(
-            "http://localhost:1000/jot-user-sensitive&initialSignup=true",
+            "/jot-user-sensitive&initialSignup=true",
             userSensitiveData
           );
 
@@ -241,7 +238,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
           };
 
           const preferenceRes = await axios.post(
-            `http://localhost:1000/jot-user-preferences`,
+            `/jot-user-preferences`,
             preferenceData
           );
 
@@ -266,7 +263,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
   const usernameCheck = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-users?userCheck=true&userCheckData=${signupData.username}`
+        `/jot-users?userCheck=true&userCheckData=${signupData.username}`
       );
 
       setUserCheckRes(res.data);
@@ -280,7 +277,7 @@ export const SignupForm = ({ returnToLogin }: SignupProps) => {
   const emailCheck = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-user-sensitive?emailCheck=true&emailCheckData=${email}`
+        `/jot-user-sensitive?emailCheck=true&emailCheckData=${email}`
       );
 
       setEmailCheckRes(res.data);
@@ -641,12 +638,12 @@ export const LoginForm = () => {
     setLoadingState(false);
     try {
       const emailRes = await axios.get(
-        `http://localhost:1000/jot-user-sensitive?loginCheckEmail=true&email=${loginData}&password=${loginPassword}`
+        `/jot-user-sensitive?loginCheckEmail=true&email=${loginData}&password=${loginPassword}`
       );
 
       if (emailRes.data.length == 0) {
         const usernameRes = await axios.get(
-          `http://localhost:1000/jot-user-sensitive?loginCheckUsername=true&username=${loginData}&password=${loginPassword}`
+          `/jot-user-sensitive?loginCheckUsername=true&username=${loginData}&password=${loginPassword}`
         );
 
         if (usernameRes.data == "") {

@@ -21,7 +21,7 @@ const PasswordRecovery = () => {
   const emailCheck = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:1000/jot-user-sensitive?emailCheck=true&emailCheckData=${email}`
+        `/jot-user-sensitive?emailCheck=true&emailCheckData=${email}`
       );
 
       if (res.data == false) {
@@ -37,7 +37,7 @@ const PasswordRecovery = () => {
   const handleRecovery = async () => {
     setLoading(!false);
     const emailTrigger = await axios.post(
-      `http://localhost:1000/jot-user-sensitive?emailTrigger=true`,
+      `/jot-user-sensitive?emailTrigger=true`,
       { email: email }
     );
     if (emailTrigger.data) {
@@ -54,10 +54,9 @@ const PasswordRecovery = () => {
     setTimeout(async () => {
       //check if code matches
       if (tempCode == Number(codeInput)) {
-        const res = await axios.post(
-          `http://localhost:1000/jot-user-sensitive?sendPassword=true`,
-          { email: email }
-        );
+        const res = await axios.post(`/jot-user-sensitive?sendPassword=true`, {
+          email: email,
+        });
         if (res.data == !false) {
           setLoading(false);
           setSuccess(!false);

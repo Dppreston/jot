@@ -26,7 +26,7 @@ const Follow = ({
 
   const followRequestCheck = async () => {
     const res = await axios.get(
-      `http://localhost:1000/jot-users?followRequestCheck=true&receivingUserId=${userId}&userId=${token}`
+      `/jot-users?followRequestCheck=true&receivingUserId=${userId}&userId=${token}`
     );
 
     setFollowRequestCheckData(res.data);
@@ -36,7 +36,7 @@ const Follow = ({
 
   const followRequest = async () => {
     const res = await axios.put(
-      `http://localhost:1000/jot-users?followRequest=true&receivingUserId=${userId}&userId=${token}`
+      `/jot-users?followRequest=true&receivingUserId=${userId}&userId=${token}`
     );
     if (res.data) {
       followRequestCheck();
@@ -45,7 +45,7 @@ const Follow = ({
 
   const cancelFollowRequest = async () => {
     const res = await axios.put(
-      `http://localhost:1000/jot-users?cancelFollowRequest=true&receivingUserId=${userId}&userId=${token}`
+      `/jot-users?cancelFollowRequest=true&receivingUserId=${userId}&userId=${token}`
     );
     if (res.data == true) {
       followRequestCheck();
