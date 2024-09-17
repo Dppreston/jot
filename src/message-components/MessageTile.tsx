@@ -91,8 +91,7 @@ const MessageTile = ({ messages, convoId, convoUsers }: MessageTileProps) => {
               messages.sender == token
                 ? {
                     marginLeft: "auto",
-                    background: "var(--accent)",
-
+                    // background: "var(--hover-on-grey)",
                     border: "var(--border)",
                   }
                 : {

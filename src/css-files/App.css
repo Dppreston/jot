@@ -4323,11 +4323,14 @@ button {
 
 .message__liked--identifier {
   position: absolute;
-  /* z-index: 2; */
   width: 25px;
   height: 25px;
   border: var(--border);
   box-shadow: var(--box-shadow);
+}
+
+.message__liked--identifier i {
+  color: var(--hover-on-grey);
 }
 
 .main__message--tile {

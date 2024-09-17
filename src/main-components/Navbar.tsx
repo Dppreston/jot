@@ -440,10 +440,9 @@ export const NavbarHomeNavDropdown = ({
             <section
               className="nav__category--tile"
               key={cat.id}
-              onClick={(e) => {
+              onClick={() => {
                 categoryCheck!(cat.title);
                 iconDetection!(cat.icon);
-                e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
               }}
             >
               <Icon icon={cat.icon} width="13px" height="13px" shape={!false} />
@@ -479,9 +478,8 @@ export const NavbarHomeNavDropdown = ({
             <section
               className="nav__category--tile"
               key={cat.id}
-              onClick={(e) => {
+              onClick={() => {
                 categoryCheck!(cat.title);
-                e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
                 iconDetection!(cat.icon);
               }}
             >
@@ -498,9 +496,8 @@ export const NavbarHomeNavDropdown = ({
               <section
                 className="nav__category--tile"
                 key={cat.id}
-                onClick={(e) => {
+                onClick={() => {
                   categoryCheck!(cat.title);
-                  e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
                   iconDetection!(cat.icon);
                 }}
               >
@@ -544,9 +541,8 @@ export const NavbarHomeNavDropdown = ({
             <section
               className="nav__category--tile"
               key={cat.id}
-              onClick={(e) => {
+              onClick={() => {
                 categoryCheck!(cat.title);
-                e.currentTarget.parentElement?.parentElement?.parentElement?.blur();
                 iconDetection!(cat.icon);
               }}
             >
@@ -566,7 +562,14 @@ export const NavbarHomeNavDropdown = ({
           }
         }}
       >
-        <p className="nav__dropdown--subtitle">Help</p>
+        <p
+          className="nav__dropdown--subtitle"
+          style={
+            darkActive == !false ? { color: "var(--white-DM)" } : undefined
+          }
+        >
+          Help
+        </p>
         {helpActive == false ? (
           <i className="fa-solid fa-chevron-right"></i>
         ) : (
@@ -639,12 +642,6 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
     setNavDropdown(false);
     loggedin == !false ? window.notificationCheck() : null;
   };
-  const onHomeNavFocus = () => {
-    setHomeDropdown(!false);
-  };
-  const onHomeNavBlur = () => {
-    setHomeDropdown(false);
-  };
 
   const userCheck = async () => {
     try {
@@ -689,6 +686,10 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
   };
 
   useEffect(() => {
+    setHomeDropdown(false);
+  }, [selectedCategory]);
+
+  useEffect(() => {
     window.loginCheck(token);
     PageDetection();
   }, []);
@@ -725,8 +726,6 @@ const Navbar = ({ selectedCategory, categoryCheck }: NavbarProps) => {
                 <button
                   className="nav__dropdown--button"
                   id="home__nav"
-                  onBlur={onHomeNavBlur}
-                  onFocus={onHomeNavFocus}
                   onClick={() => setHomeDropdown(!false)}
                   style={
                     mobileMedia == !false
